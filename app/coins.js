@@ -1,4 +1,4 @@
-var btc = require("./coins/pkc.js");
+var pkc = require("./coins/pkc.js");
 var ltc = require("./coins/ltc.js");
 
 module.exports = {
