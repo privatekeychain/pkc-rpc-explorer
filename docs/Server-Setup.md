@@ -10,14 +10,14 @@
     apt update
     apt upgrade
     apt install python-certbot-nginx
-    
+
 Copy content from [./btc-explorer.com.conf](./btc-explorer.com.conf) into `/etc/nginx/sites-available/btc-explorer.com.conf`
 
     certbot --nginx -d btc-explorer.com
     cd /etc/ssl/certs
     openssl dhparam -out dhparam.pem 4096
     cd /home/bitcoin
-    git clone https://github.com/janoside/btc-rpc-explorer.git
+    git clone https://https://gitee.com/zhanghoufu/pkc-rpc-explorer.git
     cd /home/bitcoin/btc-rpc-explorer
     npm install
     pm2 start bin/www --name "btc-rpc-explorer"

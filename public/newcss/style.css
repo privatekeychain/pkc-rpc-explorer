@@ -1,0 +1,177 @@
+/* ================= Main Content Area ================= */
+
+.main-container {
+	background-color: 060606;
+	z-index: 200;
+}
+
+/* Preloader */
+
+
+/* FlexSlider Styles */
+
+.flexslider {
+	padding: 0 0 20px 0;
+	margin: 100px 0 120px 0;
+	width: 100%;
+	text-align: center;
+	overflow: hidden;
+}
+
+.flexslider h1 {
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 90px;
+	color: #5BC0DE;
+	font-weight: 900;
+	text-transform: uppercase;
+	border: 8px solid #5BC0DE;
+}
+
+.flexslider p {
+	font-size: 35px;
+	margin-bottom: 20px;
+}
+
+.flexslider form .form-control {
+	height: 45px;
+	width: 100%;
+	padding: 12px 24px;
+	border-radius: 0;
+	font-size: 18px;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.flexslider form button {
+	height: 45px;
+	border-radius: 0;
+	margin-left: -4px;
+	font-size: 18px;
+}
+
+/* Social and CountDown */
+
+.countdown-wrapper {
+	padding: 40px 0 50px;
+	margin: 0 0 0 0;
+}
+
+.countdown-showcase {
+	text-align: center;
+	font-size: 30px;
+	color: #ffffff;
+	font-weight: 100;
+	line-height: 36px;
+}
+
+.countdown-showcase span {
+	font-weight: 900;
+	color: #ffffff;
+}
+
+.countdown {
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+	list-style: none;
+	display: inline-table;
+	font-size: 14px;
+	line-height: 24px;
+	text-align: center;
+	color: #ffffff;
+}
+
+.countdown span {
+	font-weight: 300;
+	font-size: 60px;
+	line-height: 52px;
+	text-align: center;
+	display: block;
+	color: #ffffff;
+}
+
+.countdown li {
+	padding: 0 20px;
+	margin: 0 0 0 0;
+	list-style: none;
+	display: inline-table;
+	text-align: center;
+}
+
+/* Footer Area Styles */
+
+
+/* ================== Media Query ================== */
+
+@media (max-width: 1200px) {
+	.countdown-showcase {
+		text-align: center;
+	}
+}
+
+@media (max-width: 991px) {
+	.flexslider h1 {
+		font-size: 75px;
+	}
+
+	.flexslider p {
+		font-size: 25px;
+	}
+
+	.countdown-showcase {
+		text-align: center;
+	}
+
+	.countdown {
+		padding-top: 20px;
+	}
+}
+
+@media (max-width: 768px) {
+	.flexslider h1 {
+		font-size: 60px;
+	}
+
+	.flexslider p {
+		font-size: 22px;
+	}
+
+	.flexslider input {
+		text-align: center;
+	}
+}
+
+@media (max-width: 480px) {
+	.flexslider h1 {
+		font-size: 45px;
+	}
+
+	.flexslider p {
+		font-size: 16px;
+	}
+
+	.footer span {
+		display: block;
+	}
+
+	.flexslider {
+		margin: 60px 0;
+	}
+
+	.countdown-showcase {
+		font-size: 24px;
+	}
+
+	.countdown {
+		font-size: 12px;
+	}
+
+	.countdown span {
+		font-size: 30px;
+	}
+
+	.countdown li {
+		padding: 0 10px;
+	}
+}

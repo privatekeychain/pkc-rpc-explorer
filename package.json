@@ -17,7 +17,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/janoside/btc-rpc-explorer.git"
+    "url": "git+https://https://gitee.com/zhanghoufu/pkc-rpc-explorer.git"
   },
   "dependencies": {
     "bitcoin-core": "2.0.0",

@@ -1,0 +1,34 @@
+extends layout
+
+block headContent
+	title Tokens
+
+block content
+	h1(class="h3") TOKENS
+	hr
+	link(rel="stylesheet", href="/newcss/font-awesome.min.css")
+	link(rel="stylesheet", href="/newcss/style.css")
+	div(class="main-container")
+			div(class="container" style="max-width:1140px;")
+				div(class="flexslider")
+					h1 Coming Soon
+					div(class="countdown-wrapper")
+						div(class="countdown-showcase")
+							ul(class="countdown")
+								li 
+									span(id="days") 000 
+									p(style="font-size:14px;text-align:center") Days
+								li
+									span(id="hours") 00 
+									p(style="font-size:14px;text-align:center") Hours
+								li
+									span(id="minutes") 00
+									p(style="font-size:14px;text-align:center") Minutes
+								li
+									span(id="seconds") 00 
+									p(style="font-size:14px;text-align:center") Seconds
+	script(src="/js/jquery-1.10.2.js")
+	script(src="/js/bootstrap.min.js")
+	script(src="/js/countdown.js")
+	script(src="/js/jquery.flexslider.js")
+	script(src="/js/main.js")

@@ -73,7 +73,7 @@ block content
 							td(class="properties-header") Status
 							td(class="monospace")
 								if (getblockchaininfo.initialblockdownload || getblockchaininfo.headers > getblockchaininfo.blocks)
-									span Initial block download progress #{(100 * getblockchaininfo.verificationprogress).toLocaleString()}%
+									span Initial block download progress #{100 *1}%
 								else
 									span Synchronized with network
 

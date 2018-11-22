@@ -141,14 +141,15 @@ module.exports = {
       url: "/rpc-terminal",
       desc: "Directly execute RPCs against this node.",
       fontawesome: "fas fa-terminal"
-    },
-
-    {
-      name: "PKCoin Fun",
-      url: "/fun",
-      desc: "See fun/interesting historical blockchain data.",
-      fontawesome: "fas fa-certificate"
     }
+    // ,
+
+    // {
+    //   name: "PKCoin Fun",
+    //   url: "/fun",
+    //   desc: "See fun/interesting historical blockchain data.",
+    //   fontawesome: "fas fa-certificate"
+    // }
   ],
 
   donationAddresses: {
@@ -165,24 +166,27 @@ module.exports = {
       address: "ME4pXiXuWfEi1ANBDo9irUJVcZBhsTx14i"
     }
   },
-
   headerDropdownLinks: {
-    title: "Related Sites",
-    links: [{
-        name: "PKcoin Explorer",
-        url: "https://btc.chaintools.io",
-        imgUrl: "/img/logo/btc.svg"
-      },
-      {
-        name: "Litecoin Explorer",
-        url: "https://ltc.chaintools.io",
-        imgUrl: "/img/logo/ltc.svg"
-      },
-      {
-        name: "Lightning Explorer",
-        url: "https://lightning.chaintools.io",
-        imgUrl: "/img/logo/lightning.svg"
-      }
-    ]
+    title: "TOKENS",
+    links: []
   }
+  // headerDropdownLinks: {
+  //   title: "Related Sites",
+  //   links: [{
+  //       name: "PKcoin Explorer",
+  //       url: "https://btc.chaintools.io",
+  //       imgUrl: "/img/logo/btc.svg"
+  //     },
+  //     {
+  //       name: "Litecoin Explorer",
+  //       url: "https://ltc.chaintools.io",
+  //       imgUrl: "/img/logo/ltc.svg"
+  //     },
+  //     {
+  //       name: "Lightning Explorer",
+  //       url: "https://lightning.chaintools.io",
+  //       imgUrl: "/img/logo/lightning.svg"
+  //     }
+  //   ]
+  // }
 };

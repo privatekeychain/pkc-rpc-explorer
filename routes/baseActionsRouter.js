@@ -1037,7 +1037,9 @@ router.get("/tx-stats", function (req, res) {
 router.get("/about", function (req, res) {
 	res.render("about");
 });
-
+router.get("/tokens", function (req, res) {
+	res.render("tokens");
+});
 router.get("/fun", function (req, res) {
 	var sortedList = coins[config.coin].historicalData;
 	sortedList.sort(function (a, b) {
