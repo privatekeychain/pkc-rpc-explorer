@@ -9,9 +9,10 @@ var currentBlockHeight = 1234567;
 
 
 function getBlockchainInfo() {
-	return new Promise(function(resolve, reject) {
+	return new Promise(function (resolve, reject) {
 		resolve({
 			blocks: currentBlockHeight
+
 		});
 	});
 }
@@ -43,7 +44,7 @@ function getBlockByHeight(blockHeight) {
 		txids.push(SHA256("" + blockHeight + "_" + i));
 	}
 
-	return new Promise(function(resolve, reject) {
+	return new Promise(function (resolve, reject) {
 		resolve({
 			"hash": SHA256("" + blockHeight),
 			"confirmations": currentBlockHeight - blockHeight,
@@ -69,10 +70,10 @@ function getBlockByHeight(blockHeight) {
 
 function getBlocksByHeight(blockHeights) {
 	console.log("mock.getBlocksByHeight: " + blockHeights);
-	return new Promise(function(resolve, reject) {
+	return new Promise(function (resolve, reject) {
 		var blocks = [];
 		for (var i = 0; i < blockHeights.length; i++) {
-			getBlockByHeight(blockHeights[i]).then(function(result) {
+			getBlockByHeight(blockHeights[i]).then(function (result) {
 				blocks.push(result);
 			});
 			/*blocks.push({
@@ -108,7 +109,7 @@ function getBlocksByHeight(blockHeights) {
 }
 
 function getBlockByHash(blockHash) {
-	return new Promise(function(resolve, reject) {
+	return new Promise(function (resolve, reject) {
 		resolve({
 			"hash": blockHash,
 			"confirmations": 3,
@@ -139,7 +140,7 @@ function getBlockByHash(blockHash) {
 }
 
 function getBlocksByHash(blockHashes) {
-	return new Promise(function(resolve, reject) {
+	return new Promise(function (resolve, reject) {
 		var blocks = [];
 		for (var i = 0; i < blockHashes.length; i++) {
 			blocks.push({
@@ -175,7 +176,7 @@ function getBlocksByHash(blockHashes) {
 }
 
 function getRawTransaction(txid) {
-	return new Promise(function(resolve, reject) {
+	return new Promise(function (resolve, reject) {
 		resolve({
 			"txid": txid,
 			"hash": txid,
@@ -183,14 +184,11 @@ function getRawTransaction(txid) {
 			"size": 237,
 			"vsize": 210,
 			"locktime": 0,
-			"vin": [
-				{
-					"coinbase": "03851208fabe6d6d7bf60491521f081d77fa018fb41a167dd447bf20e7d2487426c3cee65332cdb50100000000000000266508019fcf7fcb7b01002ffd0c2f736c7573682f",
-					"sequence": 0
-				}
-			],
-			"vout": [
-				{
+			"vin": [{
+				"coinbase": "03851208fabe6d6d7bf60491521f081d77fa018fb41a167dd447bf20e7d2487426c3cee65332cdb50100000000000000266508019fcf7fcb7b01002ffd0c2f736c7573682f",
+				"sequence": 0
+			}],
+			"vout": [{
 					"value": 12.51946416,
 					"n": 0,
 					"scriptPubKey": {
@@ -227,7 +225,7 @@ function getAddress(address) {
 }
 
 function getRawTransactions(txids) {
-	return new Promise(function(resolve, reject) {
+	return new Promise(function (resolve, reject) {
 		var txs = [];
 		for (var i = 0; i < txids.length; i++) {
 			txs.push({
@@ -237,14 +235,11 @@ function getRawTransactions(txids) {
 				"size": 237,
 				"vsize": 210,
 				"locktime": 0,
-				"vin": [
-					{
-						"coinbase": "03851208fabe6d6d7bf60491521f081d77fa018fb41a167dd447bf20e7d2487426c3cee65332cdb50100000000000000266508019fcf7fcb7b01002ffd0c2f736c7573682f",
-						"sequence": 0
-					}
-				],
-				"vout": [
-					{
+				"vin": [{
+					"coinbase": "03851208fabe6d6d7bf60491521f081d77fa018fb41a167dd447bf20e7d2487426c3cee65332cdb50100000000000000266508019fcf7fcb7b01002ffd0c2f736c7573682f",
+					"sequence": 0
+				}],
+				"vout": [{
 						"value": 12.51946416,
 						"n": 0,
 						"scriptPubKey": {
@@ -284,13 +279,13 @@ function getMinerFromCoinbaseTx(tx) {
 }
 
 function getHelp() {
-	return new Promise(function(resolve, reject) {
+	return new Promise(function (resolve, reject) {
 		reject("Not implemented");
 	});
 }
 
 function getRpcMethodHelp(methodName) {
-	return new Promise(function(resolve, reject) {
+	return new Promise(function (resolve, reject) {
 		reject("Not implemented");
 	});
 }

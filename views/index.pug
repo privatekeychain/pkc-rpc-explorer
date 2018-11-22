@@ -165,12 +165,12 @@ block content
 						tr
 							th(class="text-left") Count
 							each item, index in chainTxStats
-								td(class="monospace") #{item.window_tx_count.toLocaleString()}
+								td(class="monospace") #{item.window_tx_count}
 
-						tr
-							th(class="text-left") Rate
-							each item, index in chainTxStats
-								td(class="monospace") #{new Decimal(item.txrate).toDecimalPlaces(4)}
+						//- tr
+						//- 	th(class="text-left") Rate
+						//- 	each item, index in chainTxStats
+						//- 		td(class="monospace") #{new Decimal(item.txrate).toDecimalPlaces(4)}
 
 block endOfBody
 	script(async, defer, src="https://buttons.github.io/buttons.js")

@@ -40,15 +40,15 @@ function getChainTxStats(blockCount) {
 }
 
 function getBlockByHeight(blockHeight) {
-	return new Promise(function(resolve, reject) {
-		getBlocksByHeight([blockHeight]).then(function(results) {
+	return new Promise(function (resolve, reject) {
+		getBlocksByHeight([blockHeight]).then(function (results) {
 			if (results && results.length > 0) {
 				resolve(results[0]);
 
 			} else {
 				resolve(null);
 			}
-		}).catch(function(err) {
+		}).catch(function (err) {
 			reject(err);
 		});
 	});
@@ -57,12 +57,12 @@ function getBlockByHeight(blockHeight) {
 function getBlocksByHeight(blockHeights) {
 	//console.log("getBlocksByHeight: " + blockHeights);
 
-	return new Promise(function(resolve, reject) {
+	return new Promise(function (resolve, reject) {
 		var batch = [];
 		for (var i = 0; i < blockHeights.length; i++) {
 			batch.push({
 				method: 'getblockhash',
-				parameters: [ blockHeights[i] ]
+				parameters: [blockHeights[i]]
 			});
 		}
 
@@ -73,7 +73,7 @@ function getBlocksByHeight(blockHeights) {
 			});
 
 			if (blockHashes.length == batch.length) {
-				getBlocksByHash(blockHashes).then(function(blocks) {
+				getBlocksByHash(blockHashes).then(function (blocks) {
 					resolve(blocks);
 				});
 			}
@@ -82,15 +82,15 @@ function getBlocksByHeight(blockHeights) {
 }
 
 function getBlockByHash(blockHash) {
-	return new Promise(function(resolve, reject) {
-		getBlocksByHash([blockHash]).then(function(results) {
+	return new Promise(function (resolve, reject) {
+		getBlocksByHash([blockHash]).then(function (results) {
 			if (results && results.length > 0) {
 				resolve(results[0]);
 
 			} else {
 				resolve(null);
 			}
-		}).catch(function(err) {
+		}).catch(function (err) {
 			reject(err);
 		});
 	});
@@ -99,12 +99,12 @@ function getBlockByHash(blockHash) {
 function getBlocksByHash(blockHashes) {
 	console.log("rpc.getBlocksByHash: " + blockHashes);
 
-	return new Promise(function(resolve, reject) {
+	return new Promise(function (resolve, reject) {
 		var batch = [];
 		for (var i = 0; i < blockHashes.length; i++) {
 			batch.push({
 				method: 'getblock',
-				parameters: [ blockHashes[i] ]
+				parameters: [blockHashes[i]]
 			});
 		}
 
@@ -121,7 +121,7 @@ function getBlocksByHash(blockHashes) {
 				coinbaseTxids.push(blocks[i].tx[0])
 			}
 
-			getRawTransactions(coinbaseTxids).then(function(coinbaseTxs) {
+			getRawTransactions(coinbaseTxids).then(function (coinbaseTxs) {
 				for (var i = 0; i < blocks.length; i++) {
 					blocks[i].coinbaseTx = coinbaseTxs[i];
 					blocks[i].totalFees = utils.getBlockTotalFeesFromCoinbaseTxAndBlockHeight(coinbaseTxs[i], blocks[i].height);
@@ -135,8 +135,8 @@ function getBlocksByHash(blockHashes) {
 }
 
 function getRawTransaction(txid) {
-	return new Promise(function(resolve, reject) {
-		getRawTransactions([txid]).then(function(results) {
+	return new Promise(function (resolve, reject) {
+		getRawTransactions([txid]).then(function (results) {
 			if (results && results.length > 0) {
 				if (results[0].txid) {
 					resolve(results[0]);
@@ -147,7 +147,7 @@ function getRawTransaction(txid) {
 			} else {
 				resolve(null);
 			}
-		}).catch(function(err) {
+		}).catch(function (err) {
 			reject(err);
 		});
 	});
@@ -160,7 +160,7 @@ function getAddress(address) {
 function getRawTransactions(txids) {
 	//console.log("getRawTransactions: " + txids);
 
-	return new Promise(function(resolve, reject) {
+	return new Promise(function (resolve, reject) {
 		if (!txids || txids.length == 0) {
 			resolve([]);
 
@@ -171,18 +171,18 @@ function getRawTransactions(txids) {
 		var promises = [];
 		for (var i = 0; i < txids.length; i++) {
 			var txid = txids[i];
-			
+
 			if (txid) {
 				if (coins[config.coin].genesisCoinbaseTransactionId && txid == coins[config.coin].genesisCoinbaseTransactionId) {
 					// copy the "confirmations" field from genesis block to the genesis-coinbase tx
-					promises.push(new Promise(function(resolve2, reject2) {
-						getBlockchainInfo().then(function(blockchainInfoResult) {
+					promises.push(new Promise(function (resolve2, reject2) {
+						getBlockchainInfo().then(function (blockchainInfoResult) {
 							var result = coins[config.coin].genesisCoinbaseTransaction;
 							result.confirmations = blockchainInfoResult.blocks;
 
 							resolve2([result]);
 
-						}).catch(function(err) {
+						}).catch(function (err) {
 							reject2(err);
 						});
 					}));
@@ -190,7 +190,7 @@ function getRawTransactions(txids) {
 				} else {
 					requests.push({
 						method: 'getrawtransaction',
-						parameters: [ txid, 1 ]
+						parameters: [txid, 1]
 					});
 				}
 			}
@@ -198,13 +198,13 @@ function getRawTransactions(txids) {
 
 		var requestBatches = utils.splitArrayIntoChunks(requests, 100);
 
-		promises.push(new Promise(function(resolve2, reject2) {
-			executeBatchesSequentially(requestBatches, function(results) {
+		promises.push(new Promise(function (resolve2, reject2) {
+			executeBatchesSequentially(requestBatches, function (results) {
 				resolve2(results);
 			});
 		}));
-		
-		Promise.all(promises).then(function(results) {
+
+		Promise.all(promises).then(function (results) {
 			var finalResults = [];
 			for (var i = 0; i < results.length; i++) {
 				for (var j = 0; j < results[i].length; j++) {
@@ -218,8 +218,8 @@ function getRawTransactions(txids) {
 }
 
 function getHelp() {
-	return new Promise(function(resolve, reject) {
-		client.command('help', function(err, result, resHeaders) {
+	return new Promise(function (resolve, reject) {
+		client.command('help', function (err, result, resHeaders) {
 			if (err) {
 				console.log("Error 32907th429ghf: " + err);
 
@@ -231,12 +231,15 @@ function getHelp() {
 			var lines = result.split("\n");
 			var sections = [];
 
-			lines.forEach(function(line) {
+			lines.forEach(function (line) {
 				if (line.startsWith("==")) {
 					var sectionName = line.substring(2);
 					sectionName = sectionName.substring(0, sectionName.length - 2).trim();
 
-					sections.push({name:sectionName, methods:[]});
+					sections.push({
+						name: sectionName,
+						methods: []
+					});
 
 				} else if (line.trim().length > 0) {
 					var methodName = line.trim();
@@ -245,7 +248,10 @@ function getHelp() {
 						methodName = methodName.substring(0, methodName.indexOf(" "));
 					}
 
-					sections[sections.length - 1].methods.push({name:methodName, content:line.trim()});
+					sections[sections.length - 1].methods.push({
+						name: methodName,
+						content: line.trim()
+					});
 				}
 			});
 
@@ -255,8 +261,8 @@ function getHelp() {
 }
 
 function getRpcMethodHelp(methodName) {
-	return new Promise(function(resolve, reject) {
-		client.command('help', methodName, function(err, result, resHeaders) {
+	return new Promise(function (resolve, reject) {
+		client.command('help', methodName, function (err, result, resHeaders) {
 			if (err) {
 				console.log("Error 237hwerf07wehg: " + err);
 
@@ -273,7 +279,7 @@ function getRpcMethodHelp(methodName) {
 			var lines = str.split("\n");
 			var argumentLines = [];
 			var catchArgs = false;
-			lines.forEach(function(line) {
+			lines.forEach(function (line) {
 				if (line.trim().length == 0) {
 					catchArgs = false;
 				}
@@ -290,7 +296,7 @@ function getRpcMethodHelp(methodName) {
 			var args = [];
 			var argX = null;
 			// looking for line starting with "N. " where N is an integer (1-2 digits)
-			argumentLines.forEach(function(line) {
+			argumentLines.forEach(function (line) {
 				var regex = /^([0-9]+)\.\s*"?(\w+)"?\s*\(([^,)]*),?\s*([^,)]*),?\s*([^,)]*),?\s*([^,)]*)?\s*\)\s*(.+)?$/;
 
 				var match = regex.exec(line);
@@ -340,8 +346,8 @@ function getRpcMethodHelp(methodName) {
 
 
 function getRpcData(cmd) {
-	return new Promise(function(resolve, reject) {
-		client.command(cmd, function(err, result, resHeaders) {
+	return new Promise(function (resolve, reject) {
+		client.command(cmd, function (err, result, resHeaders) {
 			if (err) {
 				console.log("Error for RPC command '" + cmd + "': " + err);
 
@@ -355,10 +361,11 @@ function getRpcData(cmd) {
 }
 
 function getRpcDataWithParams(cmd, params) {
-	return new Promise(function(resolve, reject) {
-		client.command(cmd, params, function(err, result, resHeaders) {
+	return new Promise(function (resolve, reject) {
+		console.log(params)
+		client.command(cmd, params, function (err, result, resHeaders) {
 			if (err) {
-				console.log("Error for RPC command '" + cmd + "': " + err);
+				console.log("Error for RPC command '" + cmd + "': " + params + err);
 
 				reject(err);
 
@@ -390,7 +397,7 @@ function executeBatchesSequentiallyInternal(batchId, batches, currentIndex, accu
 
 	var count = batches[currentIndex].length;
 
-	client.command(batches[currentIndex]).then(function(results) {
+	client.command(batches[currentIndex]).then(function (results) {
 		results.forEach((item) => {
 			accumulatedResults.push(item);
 
