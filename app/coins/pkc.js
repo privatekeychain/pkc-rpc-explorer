@@ -34,7 +34,7 @@ var btcCurrencyUnits = [{
 module.exports = {
 	name: "Bitcoin",
 	ticker: "PKC",
-	logoUrl: "/img/logo/btc.svg",
+	logoUrl: "/img/logo/btc.png",
 	siteTitle: "PKcoin Explorer",
 	siteDescriptionHtml: "<b>BTC Explorer</b> is <a href='https://https://gitee.com/zhanghoufu/pkc-rpc-explorer). If you run your own [Bitcoin Full Node](https://bitcoin.org/en/full-node), **BTC Explorer** can easily run alongside it, communicating via RPC calls. See the project [ReadMe](https://https://gitee.com/zhanghoufu/pkc-rpc-explorer) for a list of features and instructions for running.",
 	nodeTitle: "Bitcoin Full Node",
