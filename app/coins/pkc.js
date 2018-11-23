@@ -26,13 +26,13 @@ var btcCurrencyUnits = [{
 	{
 		name: "sdf",
 		multiplier: 100000000,
-		values: ["sdf", "sdf"],
+		values: ["sdf"],
 		decimalPlaces: 0
 	}
 ];
 
 module.exports = {
-	name: "Bitcoin",
+	name: "PKcoin",
 	ticker: "PKC",
 	logoUrl: "/img/logo/btc.png",
 	siteTitle: "PKcoin Explorer",
