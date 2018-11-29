@@ -7,30 +7,84 @@ var coinConfig = coins[config.coin];
 
 var ipCache = {};
 
-var exponentScales = [
-	{val:1000000000000000000000000000000000, name:"?", abbreviation:"V", exponent:"33"},
-	{val:1000000000000000000000000000000, name:"?", abbreviation:"W", exponent:"30"},
-	{val:1000000000000000000000000000, name:"?", abbreviation:"X", exponent:"27"},
-	{val:1000000000000000000000000, name:"yotta", abbreviation:"Y", exponent:"24"},
-	{val:1000000000000000000000, name:"zetta", abbreviation:"Z", exponent:"21"},
-	{val:1000000000000000000, name:"exa", abbreviation:"E", exponent:"18"},
-	{val:1000000000000000, name:"peta", abbreviation:"P", exponent:"15"},
-	{val:1000000000000, name:"tera", abbreviation:"T", exponent:"12"},
-	{val:1000000000, name:"giga", abbreviation:"G", exponent:"9"},
-	{val:1000000, name:"mega", abbreviation:"M", exponent:"6"},
-	{val:1000, name:"kilo", abbreviation:"K", exponent:"3"}
+var exponentScales = [{
+		val: 1000000000000000000000000000000000,
+		name: "?",
+		abbreviation: "V",
+		exponent: "33"
+	},
+	{
+		val: 1000000000000000000000000000000,
+		name: "?",
+		abbreviation: "W",
+		exponent: "30"
+	},
+	{
+		val: 1000000000000000000000000000,
+		name: "?",
+		abbreviation: "X",
+		exponent: "27"
+	},
+	{
+		val: 1000000000000000000000000,
+		name: "yotta",
+		abbreviation: "Y",
+		exponent: "24"
+	},
+	{
+		val: 1000000000000000000000,
+		name: "zetta",
+		abbreviation: "Z",
+		exponent: "21"
+	},
+	{
+		val: 1000000000000000000,
+		name: "exa",
+		abbreviation: "E",
+		exponent: "18"
+	},
+	{
+		val: 1000000000000000,
+		name: "peta",
+		abbreviation: "P",
+		exponent: "15"
+	},
+	{
+		val: 1000000000000,
+		name: "tera",
+		abbreviation: "T",
+		exponent: "12"
+	},
+	{
+		val: 1000000000,
+		name: "giga",
+		abbreviation: "G",
+		exponent: "9"
+	},
+	{
+		val: 1000000,
+		name: "mega",
+		abbreviation: "M",
+		exponent: "6"
+	},
+	{
+		val: 1000,
+		name: "kilo",
+		abbreviation: "K",
+		exponent: "3"
+	}
 ];
 
 function redirectToConnectPageIfNeeded(req, res) {
 	if (!req.session.host) {
 		req.session.redirectUrl = req.originalUrl;
-		
+
 		res.redirect("/");
 		res.end();
-		
+
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -39,14 +93,14 @@ function hex2ascii(hex) {
 	for (var i = 0; i < hex.length; i += 2) {
 		str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
 	}
-	
+
 	return str;
 }
 
 function splitArrayIntoChunks(array, chunkSize) {
 	var j = array.length;
 	var chunks = [];
-	
+
 	for (var i = 0; i < j; i += chunkSize) {
 		chunks.push(array.slice(i, i + chunkSize));
 	}
@@ -55,29 +109,29 @@ function splitArrayIntoChunks(array, chunkSize) {
 }
 
 function getRandomString(length, chars) {
-    var mask = '';
-	
-    if (chars.indexOf('a') > -1) {
+	var mask = '';
+
+	if (chars.indexOf('a') > -1) {
 		mask += 'abcdefghijklmnopqrstuvwxyz';
 	}
-	
-    if (chars.indexOf('A') > -1) {
+
+	if (chars.indexOf('A') > -1) {
 		mask += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	}
-	
-    if (chars.indexOf('#') > -1) {
+
+	if (chars.indexOf('#') > -1) {
 		mask += '0123456789';
 	}
-    
+
 	if (chars.indexOf('!') > -1) {
 		mask += '~`!@#$%^&*()_+-={}[]:";\'<>?,./|\\';
 	}
-	
-    var result = '';
-    for (var i = length; i > 0; --i) {
+
+	var result = '';
+	for (var i = length; i > 0; --i) {
 		result += mask[Math.floor(Math.random() * mask.length)];
 	}
-	
+
 	return result;
 }
 
@@ -125,7 +179,7 @@ function formatCurrencyAmountWithForcedDecimalPlaces(amount, formatType, forcedD
 			}
 		}
 	}
-	
+
 	return amount;
 }
 
@@ -157,8 +211,8 @@ function formatExchangedCurrency(amount) {
 }
 
 function seededRandom(seed) {
-    var x = Math.sin(seed++) * 10000;
-    return x - Math.floor(x);
+	var x = Math.sin(seed++) * 10000;
+	return x - Math.floor(x);
 }
 
 function seededRandomIntBetween(seed, min, max) {
@@ -180,7 +234,7 @@ function getMinerFromCoinbaseTx(tx) {
 	if (tx == null || tx.vin == null || tx.vin.length == 0) {
 		return null;
 	}
-	
+
 	if (global.miningPoolsConfigs) {
 		for (var i = 0; i < global.miningPoolsConfigs.length; i++) {
 			var miningPoolsConfig = global.miningPoolsConfigs[i];
@@ -238,7 +292,7 @@ function getTxTotalInputOutputValues(tx, txInputs, blockHeight) {
 				}
 			}
 		}
-		
+
 		for (var i = 0; i < tx.vout.length; i++) {
 			totalOutputValue = totalOutputValue.plus(new Decimal(tx.vout[i].value));
 		}
@@ -246,7 +300,10 @@ function getTxTotalInputOutputValues(tx, txInputs, blockHeight) {
 		console.log("Error computing total input/output values for tx: err=" + err + ", tx=" + JSON.stringify(tx) + ", txInputs=" + JSON.stringify(txInputs) + ", blockHeight=" + blockHeight);
 	}
 
-	return {input:totalInputValue, output:totalOutputValue};
+	return {
+		input: totalInputValue,
+		output: totalOutputValue
+	};
 }
 
 function getBlockTotalFeesFromCoinbaseTxAndBlockHeight(coinbaseTx, blockHeight) {
@@ -269,10 +326,10 @@ function getBlockTotalFeesFromCoinbaseTxAndBlockHeight(coinbaseTx, blockHeight) 
 
 function refreshExchangeRate() {
 	if (coins[config.coin].exchangeRateData) {
-		request(coins[config.coin].exchangeRateData.jsonUrl, function(error, response, body) {
+		request(coins[config.coin].exchangeRateData.jsonUrl, function (error, response, body) {
 			if (!error && response && response.statusCode && response.statusCode == 200) {
 				var responseBody = JSON.parse(body);
-
+				console.log(responseBody)
 				var exchangeRate = coins[config.coin].exchangeRateData.responseBodySelectorFunction(responseBody);
 				if (exchangeRate > 0) {
 					global.exchangeRate = exchangeRate;
@@ -295,7 +352,7 @@ function refreshExchangeRate() {
 
 // Uses IPStack.com API
 function geoLocateIpAddresses(ipAddresses) {
-	return new Promise(function(resolve, reject) {
+	return new Promise(function (resolve, reject) {
 		var chunks = splitArrayIntoChunks(ipAddresses, 1);
 
 		var promises = [];
@@ -310,14 +367,14 @@ function geoLocateIpAddresses(ipAddresses) {
 			}
 
 			if (ipCache[ipStr] != null) {
-				promises.push(new Promise(function(resolve2, reject2) {
+				promises.push(new Promise(function (resolve2, reject2) {
 					resolve2(ipCache[ipStr]);
 				}));
 
 			} else if (config.credentials.ipStackComApiAccessKey && config.credentials.ipStackComApiAccessKey.trim().length > 0) {
 				var apiUrl = "http://api.ipstack.com/" + ipStr + "?access_key=" + config.credentials.ipStackComApiAccessKey;
-				promises.push(new Promise(function(resolve2, reject2) {
-					request(apiUrl, function(error, response, body) {
+				promises.push(new Promise(function (resolve2, reject2) {
+					request(apiUrl, function (error, response, body) {
 						if (error) {
 							reject2(error);
 
@@ -327,14 +384,17 @@ function geoLocateIpAddresses(ipAddresses) {
 					});
 				}));
 			} else {
-				promises.push(new Promise(function(resolve2, reject2) {
+				promises.push(new Promise(function (resolve2, reject2) {
 					resolve2(null);
 				}));
 			}
 		}
 
-		Promise.all(promises).then(function(results) {
-			var ipDetails = {ips:[], detailsByIp:{}};
+		Promise.all(promises).then(function (results) {
+			var ipDetails = {
+				ips: [],
+				detailsByIp: {}
+			};
 
 			for (var i = 0; i < results.length; i++) {
 				var res = results[i];
@@ -357,10 +417,10 @@ function geoLocateIpAddresses(ipAddresses) {
 }
 
 function parseExponentStringDouble(val) {
-	var [lead,decimal,pow] = val.toString().split(/e|\./);
-	return +pow <= 0 
-		? "0." + "0".repeat(Math.abs(pow)-1) + lead + decimal
-		: lead + ( +pow >= decimal.length ? (decimal + "0".repeat(+pow-decimal.length)) : (decimal.slice(0,+pow)+"."+decimal.slice(+pow)));
+	var [lead, decimal, pow] = val.toString().split(/e|\./);
+	return +pow <= 0 ?
+		"0." + "0".repeat(Math.abs(pow) - 1) + lead + decimal :
+		lead + (+pow >= decimal.length ? (decimal + "0".repeat(+pow - decimal.length)) : (decimal.slice(0, +pow) + "." + decimal.slice(+pow)));
 }
 
 function formatLargeNumber(n, decimalPlaces) {

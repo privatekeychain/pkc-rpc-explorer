@@ -206,12 +206,23 @@ module.exports = {
 		// 	alertBodyHtml: "This address was generated from the SHA256 hash of 'Satoshi Nakamoto' as example of the 'brainwallet' concept."
 		// }
 	],
+	// exchangeRateData: {
+	// 	jsonUrl: "https://api.coinmarketcap.com/v1/ticker/Bitcoin/",
+	// 	exchangedCurrencyName: "usd",
+	// 	responseBodySelectorFunction: function (responseBody) {
+	// 		if (responseBody[0] && responseBody[0].price_usd) {
+	// 			return responseBody[0].price_usd;
+	// 		}
+
+	// 		return -1;
+	// 	}
+	// }
 	exchangeRateData: {
-		jsonUrl: "https://api.coinmarketcap.com/v1/ticker/Bitcoin/",
+		jsonUrl: "https://www.bcones.com/api/market/tickers/ticker?symbol=usdt_cbcc",
 		exchangedCurrencyName: "usd",
 		responseBodySelectorFunction: function (responseBody) {
-			if (responseBody[0] && responseBody[0].price_usd) {
-				return responseBody[0].price_usd;
+			if (responseBody && responseBody.data.High) {
+				return responseBody.data.High;
 			}
 
 			return -1;
