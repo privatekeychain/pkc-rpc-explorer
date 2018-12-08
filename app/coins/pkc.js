@@ -72,14 +72,14 @@ module.exports = {
 		100,
 		150
 	],
-	genesisBlockHash: "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f",
-	genesisCoinbaseTransactionId: "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b",
+	genesisBlockHash: "286aa914aab3ad788587cffd7c8a39ec1e2a8bc7b0e078b16e120d6040616215",
+	genesisCoinbaseTransactionId: "406d256a92b7202d95783cdfcccbb3df8065cda17648f3a6daeabea7c19917c6",
 	genesisCoinbaseTransaction: {
 		hex: "01000000010000000000000000000000000000000000000000000000000000000000000000ffffffff0804ffff001d02fd04ffffffff0100f2052a01000000434104f5eeb2b10c944c6b9fbcfff94c35bdeecd93df977882babc7f3a2cf7f5c81d3b09a68db7f0e04f21de5d4230e75e6dbe7ad16eefe0d4325a62067dc6f369446aac00000000",
-		txid: "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b",
-		hash: "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b",
-		size: 204,
-		vsize: 204,
+		txid: "406d256a92b7202d95783cdfcccbb3df8065cda17648f3a6daeabea7c19917c6",
+		hash: "406d256a92b7202d95783cdfcccbb3df8065cda17648f3a6daeabea7c19917c6",
+		size: 454,
+		vsize: 454,
 		version: 1,
 		confirmations: 475000,
 		vin: [{
