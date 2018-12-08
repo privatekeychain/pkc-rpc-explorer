@@ -87,7 +87,7 @@ module.exports = {
 			sequence: 4294967295
 		}],
 		vout: [{
-			value: 50,
+			value: 500,
 			n: 0,
 			scriptPubKey: {
 				asm: "04f5eeb2b10c944c6b9fbcfff94c35bdeecd93df977882babc7f3a2cf7f5c81d3b09a68db7f0e04f21de5d4230e75e6dbe7ad16eefe0d4325a62067dc6f369446a OP_CHECKSIG",
@@ -125,13 +125,13 @@ module.exports = {
 		}
 	},
 	blockRewardFunction: function (blockHeight) {
-		var eras = [new Decimal8(50)];
-		for (var i = 1; i < 34; i++) {
+		var eras = [new Decimal8(500)];
+		for (var i = 1; i < 37; i++) {
 			var previous = eras[i - 1];
 			eras.push(new Decimal8(previous).dividedBy(2));
 		}
 
-		var index = Math.floor(blockHeight / 210000);
+		var index = Math.floor(blockHeight / 525600);
 
 		return eras[index];
 	}
