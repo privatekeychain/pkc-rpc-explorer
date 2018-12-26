@@ -1,13 +1,13 @@
 extends layout
 
 block content
-	h1 Error
+	h1(i18n-content="Error")
 	hr
 
 	if (message)
 		p !{message}
 	else
-		p Unknown error
+		p(i18n-content="Unknown_error")
 
 	if (error)
 		h2 #{error.status}

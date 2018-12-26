@@ -1,10 +1,10 @@
 extends layout
 
 block headContent
-	title Blocks
+	title(i18n-content="Blocks")
 
 block content
-	h1(class="h2") Blocks
+	h1(class="h2" i18n-content="Blocks") 
 	hr
 
 	if (blocks)
@@ -13,11 +13,11 @@ block content
 				
 				li(class="page-item", class=(sort == "desc" ? "active" : false))
 					a(class="page-link", href=(sort == "desc" ? "javascript:void(0)" : "/blocks?limit=" + limit + "&offset=0" + "&sort=desc"))
-						span(aria-hidden="true") Newest blocks first
+						span(aria-hidden="true" i18n-content="Newest_blocks_first")
 
 				li(class="page-item", class=(sort == "asc" ? "active" : false))
 					a(class="page-link", href=(sort == "asc" ? "javascript:void(0)" : "/blocks?limit=" + limit + "&offset=0" + "&sort=asc"))
-						span(aria-hidden="true") Oldest blocks first
+						span(aria-hidden="true" i18n-content="Oldest_blocks_first") 
 
 		include includes/blocks-list.pug
 
@@ -35,4 +35,4 @@ block content
 
 			include includes/pagination.pug
 	else
-		p No blocks found
+		p(i18n-content="No blocks found")

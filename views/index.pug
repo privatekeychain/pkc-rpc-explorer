@@ -1,16 +1,16 @@
 extends layout
 
 block headContent
-	title Home
+	title(i18n-content="Home")
 	
 block content
-	h1(class="h3") #{coinConfig.siteTitle}
+	h1(class="h3" i18n-content="PKcoin_Explorer")
 	hr
 
 	if (config.demoSite && session.hideHomepageBanner != "true")
 		div(class="alert alert-primary alert-dismissible", role="alert")
 			p
-				strong #{coinConfig.siteTitle}
+				strong(i18n-content="PKcoin_Explorer")
 				span  is 
 				a(href="https://https://gitee.com/zhanghoufu/pkc-rpc-explorer") open-source
 				span  and easy to set up. It can communicate with your 
@@ -30,7 +30,7 @@ block content
 
 	div(class="card mb-3")
 		div(class="card-header")
-			h2(class="h6 mb-0") Network Summary
+			h2(class="h6 mb-0" i18n-content="Network_Summary")
 		div(class="card-body")
 			div(class="row")
 				div(class="col-md-4")
@@ -41,7 +41,7 @@ block content
 									i(class="fas fa-tachometer-alt fa-2x mr-2", style="margin-top: 6px;")
 							- var hashrateData = utils.formatLargeNumber(miningInfo.networkhashps, 3);
 							
-							span(class="font-weight-bold") Hashrate 
+							span(class="font-weight-bold" i18n-content="Hashrate")  
 
 							p(class="lead")
 								span #{hashrateData[0]} 
@@ -52,7 +52,7 @@ block content
 								div(class="float-left", style="height: 40px; width: 40px;")
 									span
 										i(class="fas fa-database fa-2x mr-2", style="margin-top: 6px; margin-left: 3px;")
-								span(class="font-weight-bold") Blockchain Size
+								span(class="font-weight-bold" i18n-content="Blockchain_Size") 
 
 								- var sizeData = utils.formatLargeNumber(getblockchaininfo.size_on_disk, 2);
 								p(class="lead") #{sizeData[0]} #{sizeData[1].abbreviation}B
@@ -64,7 +64,7 @@ block content
 								span
 									i(class="fas fa-unlock-alt fa-2x mr-2", style="margin-top: 6px; margin-left: 3px;")
 
-							span(class="font-weight-bold") Unconfirmed Transactions
+							span(class="font-weight-bold" i18n-content="Unconfirmed_Transactions") 
 
 							p(class="lead") #{mempoolInfo.size.toLocaleString()} tx 
 								- var mempoolBytesData = utils.formatLargeNumber(mempoolInfo.usage, 2);
@@ -77,7 +77,7 @@ block content
 
 							- var difficultyData = utils.formatLargeNumber(getblockchaininfo.difficulty, 3);
 
-							span(class="font-weight-bold") Difficulty
+							span(class="font-weight-bold" i18n-content="Difficulty") 
 
 							p(class="lead")
 								span(title=parseFloat(getblockchaininfo.difficulty).toLocaleString(), data-toggle="tooltip")
@@ -92,7 +92,7 @@ block content
 								span
 									i(class="fas fa-money-bill-wave-alt fa-2x mr-2", style="margin-top: 7px;")
 
-							span(class="font-weight-bold") Exchange Rate 
+							span(class="font-weight-bold" i18n-content="Exchange_Rate") 
 								span(data-toggle="tooltip", title=("Exchange-rate data from: " + coinConfig.exchangeRateData.jsonUrl))
 									i(class="fas fa-info-circle")
 
@@ -107,14 +107,14 @@ block content
 									i(class="fas fa-bolt fa-2x mr-2", style="margin-top: 6px; margin-left: 6px;")
 
 							- var chainworkData = utils.formatLargeNumber(parseInt("0x" + getblockchaininfo.chainwork), 2);
-							span(class="font-weight-bold") Chainwork
+							span(class="font-weight-bold" i18n-content="Chainwork") 
 							
 							p(class="lead")
 								span(data-toggle="tooltip", title=getblockchaininfo.chainwork.replace(/^0+/, ''))
 									span #{chainworkData[0]}
 									span  x 10
 									sup #{chainworkData[1].exponent}
-									span  hashes
+									span(i18n-content="hashes")
 
 	include includes/tools-card.pug
 	
@@ -123,7 +123,7 @@ block content
 			div(class="card-header")
 				div(class="row")
 					div(class="col")
-						h2(class="h6 mb-0") Latest Blocks
+						h2(class="h6 mb-0" i18n-content="Latest_Blocks") 
 							if (getblockchaininfo.initialblockdownload)
 								small  (#{(getblockchaininfo.headers - getblockchaininfo.blocks).toLocaleString()} behind)
 
@@ -131,7 +131,7 @@ block content
 						span(style="float: right;")
 							a(href="/blocks")
 								i(class="fas fa-cubes")
-								span  Browse Blocks &raquo;
+								span(i18n-content="Browse_Blocks_raquo")
 
 			div(class="card-body")
 
@@ -141,31 +141,31 @@ block content
 				include includes/blocks-list.pug
 
 
-	if (chainTxStats)
-		div(class="card mb-3")
-			div(class="card-header")
-				div(class="row")
-					div(class="col")
-						h2(class="h6 mb-0") Transaction Stats Summary
+	//- if (chainTxStats)
+	//- 	div(class="card mb-3")
+	//- 		div(class="card-header")
+	//- 			div(class="row")
+	//- 				div(class="col")
+	//- 					h2(class="h6 mb-0" i18n-content="Transaction_Stats_Summary")
 
-					div(class="col")
-						span(style="float: right;")
-							a(href="/tx-stats")
-								i(class="fas fa-chart-bar")
-								span  Transaction Stats &raquo;
+	//- 				div(class="col")
+	//- 					span(style="float: right;")
+	//- 						a(href="/tx-stats")
+	//- 							i(class="fas fa-chart-bar")
+	//- 							span(i18n-content="Transaction_Stats_raquo")
 		
-			div(class="card-body")
-				table(class="table table-responsive-sm text-right mb-0")
-					thead
-						tr
-							th
-							each item, index in chainTxStatsLabels
-								th #{item}
-					tbody
-						tr
-							th(class="text-left") Count
-							each item, index in chainTxStats
-								td(class="monospace") #{item.window_tx_count}
+			//- div(class="card-body")
+			//- 	table(class="table table-responsive-sm text-right mb-0")
+			//- 		thead
+			//- 			tr
+			//- 				th
+			//- 				each item, index in chainTxStatsLabels
+			//- 					th #{item}
+			//- 		tbody
+			//- 			tr
+			//- 				th(class="text-left" i18n-content="Count") 
+			//- 				each item, index in chainTxStats
+			//- 					td(class="monospace") #{item.window_tx_count}
 
 						//- tr
 						//- 	th(class="text-left") Rate

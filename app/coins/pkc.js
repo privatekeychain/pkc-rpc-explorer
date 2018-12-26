@@ -34,7 +34,7 @@ var btcCurrencyUnits = [{
 module.exports = {
 	name: "PKcoin",
 	ticker: "PKC",
-	logoUrl: "/img/logo/btc.png",
+	logoUrl: "/img/logo/pkc.png",
 	siteTitle: "PKcoin Explorer",
 	siteDescriptionHtml: "<b>BTC Explorer</b> is <a href='https://https://gitee.com/zhanghoufu/pkc-rpc-explorer). If you run your own [Bitcoin Full Node](https://bitcoin.org/en/full-node), **BTC Explorer** can easily run alongside it, communicating via RPC calls. See the project [ReadMe](https://https://gitee.com/zhanghoufu/pkc-rpc-explorer) for a list of features and instructions for running.",
 	nodeTitle: "Bitcoin Full Node",
@@ -103,15 +103,14 @@ module.exports = {
 	},
 	genesisCoinbaseOutputAddressScripthash: "8b01df4e368ea28f8dc0423bcf7a4923e3a12d307c875e47a0cfbf90b5c39161",
 	historicalData: [{
-			type: "blockheight",
-			date: "2009-01-03",
-			blockHeight: 0,
-			blockHash: "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f",
-			summary: "The Bitcoin Genesis Block.",
-			alertBodyHtml: "This is the first block in the Bitcoin blockchain, known as the 'Genesis Block'. This block was mined by Bitcoin's creator Satoshi Nakamoto. You can read more about <a href='https://en.bitcoin.it/wiki/Genesis_block'>the genesis block</a>.",
-			referenceUrl: "https://en.bitcoin.it/wiki/Genesis_block"
-		}
-	],
+		type: "blockheight",
+		date: "2009-01-03",
+		blockHeight: 0,
+		blockHash: "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f",
+		summary: "The Bitcoin Genesis Block.",
+		alertBodyHtml: "This is the first block in the Bitcoin blockchain, known as the 'Genesis Block'. This block was mined by Bitcoin's creator Satoshi Nakamoto. You can read more about <a href='https://en.bitcoin.it/wiki/Genesis_block'>the genesis block</a>.",
+		referenceUrl: "https://en.bitcoin.it/wiki/Genesis_block"
+	}],
 
 	exchangeRateData: {
 		jsonUrl: "https://www.bcones.com/api/market/tickers/ticker?symbol=usdt_cbcc",

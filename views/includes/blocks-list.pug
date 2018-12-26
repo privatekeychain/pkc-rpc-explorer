@@ -2,16 +2,16 @@ table(class="table table-striped table-responsive-sm mb-0")
 	thead
 		tr
 			//th
-			th(class="data-header") Height
-			th(class="data-header") Timestamp (utc)
-			th(class="data-header text-right") Age
+			th(class="data-header" i18n-content="Height")
+			th(class="data-header" i18n-content="Timestamp_utc_")
+			th(class="data-header text-right" i18n-content="Age") 
 			//th(class="data-header") Miner
-			th(class="data-header text-right") Transactions
-			th(class="data-header text-right") Average Fee
-			th(class="data-header text-right") Size (bytes)
+			th(class="data-header text-right" i18n-content="Transactions") 
+			th(class="data-header text-right" i18n-content="Average_Fee") 
+			th(class="data-header text-right" i18n-cotent="Size_bytes_")
 
 			if (blocks && blocks.length > 0 && blocks[0].weight)
-				th(class="data-header text-right") Weight (wu)
+				th(class="data-header text-right" i18n-content="Weight_wu_") 
 	tbody
 		each block, blockIndex in blocks
 			if (block)

@@ -1,10 +1,10 @@
 extends layout
 
 block headContent
-	title Transaction Stats
+	title(i18n-content="Transaction_Stats")
 	
 block content
-	h1(class="h3") Transaction Stats
+	h1(class="h3" i18n-content="Transaction_Stats") 
 	hr
 
 	if (false)
@@ -20,7 +20,7 @@ block content
 
 			canvas(id="graph2", class="mb-4")
 
-			script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js")
+			script(src="/js/Chart.bundle.min.js")
 
 			script var txCountData = [];
 			each item, index in txStats.txCounts

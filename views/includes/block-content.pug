@@ -1,6 +1,6 @@
 ul(class='nav nav-tabs mb-3')
 	li(class="nav-item")
-		a(data-toggle="tab", href="#tab-details", class="nav-link active", role="tab") Details
+		a(data-toggle="tab", href="#tab-details", class="nav-link active", role="tab" i18n-content="Details") 
 	li(class="nav-item")
 		a(data-toggle="tab", href="#tab-json", class="nav-link", role="tab") JSON
 
@@ -22,7 +22,7 @@ div(class="tab-content")
 
 						if (sbInfo.referenceUrl && sbInfo.referenceUrl.trim().length > 0 && sbInfo.alertBodyHtml.indexOf(sbInfo.referenceUrl) == -1)
 							span  
-								a(href=sbInfo.referenceUrl) Read more
+								a(href=sbInfo.referenceUrl i18n-content="Readmore")
 
 				else
 					p
@@ -30,16 +30,16 @@ div(class="tab-content")
 
 						if (sbInfo.referenceUrl && sbInfo.referenceUrl.trim().length > 0)
 							span  
-								a(href=sbInfo.referenceUrl) Read more
+								a(href=sbInfo.referenceUrl i18n-content="Readmore")
 
 		div(class="card mb-3")
 			div(class="card-header")
-				span(class="h6") Summary
+				span(class="h6" i18n-content="Summary")
 			div(class="card-body")
 				div(class="row")
 					div(class="col-md-6")
 						div(class="row")
-							div(class="summary-split-table-label") Previous Block
+							div(class="summary-split-table-label" i18n-content="PreviousBlock")
 							div(class="summary-split-table-content monospace")
 								if (result.getblock.previousblockhash)
 									a(class="word-wrap", href=("/block/" + result.getblock.previousblockhash)) #{result.getblock.previousblockhash}
@@ -47,28 +47,28 @@ div(class="tab-content")
 									span (##{(result.getblock.height - 1).toLocaleString()})
 
 								else if (result.getblock.hash == genesisBlockHash)
-									span None (genesis block)
+									span(i18n-content="None_genesis_block_")
 
 						div(class="row")
-							div(class="summary-split-table-label") Timestamp
+							div(class="summary-split-table-label" i18n-content="Timestamp")
 							div(class="summary-split-table-content monospace")
 								span #{moment.utc(new Date(result.getblock.time * 1000)).format("Y-MM-DD HH:mm:ss")} utc
 								- var timeAgoTime = result.getblock.time;
 								include ./time-ago.pug
 
 						div(class="row")
-							div(class="summary-split-table-label") Transactions
+							div(class="summary-split-table-label" i18n-content="Transactions")
 							div(class="summary-split-table-content monospace") #{result.getblock.tx.length.toLocaleString()}
 
 						div(class="row")
-							div(class="summary-split-table-label") Total Fees
+							div(class="summary-split-table-label" i18n-content="TotalFees")
 							div(class="summary-split-table-content monospace")
 								- var currencyValue = new Decimal(result.getblock.totalFees);
 								include ./value-display.pug
 
 						if (result.getblock.totalFees > 0)
 							div(class="row")
-								div(class="summary-split-table-label") Average Fee
+								div(class="summary-split-table-label" i18n-content="Average_Fee")
 								div(class="summary-split-table-content monospace")
 									- var currencyValue = new Decimal(result.getblock.totalFees).dividedBy(result.getblock.tx.length);
 									include ./value-display.pug
@@ -80,7 +80,7 @@ div(class="tab-content")
 
 						if (coinbaseTxTotalOutputValue < blockRewardMax)
 							div(class="row")
-								div(class="summary-split-table-label") Fees Destroyed
+								div(class="summary-split-table-label" i18n-content="Fees_Destroyed")
 								div(class="summary-split-table-content monospace text-danger")
 									- var currencyValue = new Decimal(blockRewardMax).minus(coinbaseTxTotalOutputValue);
 									include ./value-display.pug
@@ -90,7 +90,7 @@ div(class="tab-content")
 
 						if (result.getblock.weight)
 							div(class="row")
-								div(class="summary-split-table-label") Weight
+								div(class="summary-split-table-label" i18n-content="Weight") 
 								div(class="summary-split-table-content monospace")
 									span(style="") #{result.getblock.weight.toLocaleString()} wu 
 									
@@ -100,11 +100,11 @@ div(class="tab-content")
 									span(class="text-muted")  (#{new Decimal(100 * result.getblock.weight / coinConfig.maxBlockWeight).toDecimalPlaces(2)}% full)
 
 						div(class="row")
-							div(class="summary-split-table-label") Size
+							div(class="summary-split-table-label" i18n-content="Size") 
 							div(class="summary-split-table-content monospace") #{result.getblock.size.toLocaleString()} bytes
 
 						div(class="row")
-							div(class="summary-split-table-label") Confirmations
+							div(class="summary-split-table-label" i18n-content="Confirmations") 
 							div(class="summary-split-table-content monospace")
 								if (result.getblock.confirmations < 6)
 									span(class="font-weight-bold text-danger") #{result.getblock.confirmations.toLocaleString()} 
@@ -118,17 +118,17 @@ div(class="tab-content")
 
 					div(class="col-md-6")
 						div(class="row")
-							div(class="summary-split-table-label") Next Block
+							div(class="summary-split-table-label" i18n-content="Next_Block") 
 							div(class="summary-split-table-content monospace")
 								if (result.getblock.nextblockhash)
 									a(href=("/block/" + result.getblock.nextblockhash)) #{result.getblock.nextblockhash}
 									br
 									span (##{(result.getblock.height + 1).toLocaleString()})
 								else
-									span None (latest block)
+									span(i18n-content="None_latest_block_")
 
 						div(class="row")
-							div(class="summary-split-table-label") Difficulty
+							div(class="summary-split-table-label" i18n-content="Difficulty") 
 							div(class="summary-split-table-content monospace")
 								- var difficultyData = utils.formatLargeNumber(result.getblock.difficulty, 3);
 								
@@ -138,24 +138,24 @@ div(class="tab-content")
 									sup #{difficultyData[1].exponent}
 
 						div(class="row")
-							div(class="summary-split-table-label") Version
+							div(class="summary-split-table-label" i18n-content="Version") 
 							div(class="summary-split-table-content monospace") 0x#{result.getblock.versionHex}
 								span(class="text-muted")  (decimal: #{result.getblock.version})
 
 						div(class="row")
-							div(class="summary-split-table-label") Nonce
+							div(class="summary-split-table-label" i18n-content="Nonce") 
 							div(class="summary-split-table-content monospace") #{result.getblock.nonce}
 
 						div(class="row")
-							div(class="summary-split-table-label") Bits
+							div(class="summary-split-table-label" i18n-content="Bits") 
 							div(class="summary-split-table-content monospace") #{result.getblock.bits}
 
 						div(class="row")
-							div(class="summary-split-table-label") Merkle Root
+							div(class="summary-split-table-label" i18n-content="Merkle_Root") 
 							div(class="summary-split-table-content monospace") #{result.getblock.merkleroot}
 
 						div(class="row")
-							div(class="summary-split-table-label") Chainwork
+							div(class="summary-split-table-label" i18n-content="Chainwork") 
 							div(class="summary-split-table-content monospace")
 								- var chainworkData = utils.formatLargeNumber(parseInt("0x" + result.getblock.chainwork), 2);
 
@@ -167,7 +167,7 @@ div(class="tab-content")
 								span(class="text-muted")  (#{result.getblock.chainwork.replace(/^0+/, '')})
 
 						div(class="row")
-							div(class="summary-split-table-label") Miner
+							div(class="summary-split-table-label" i18n-content="Miner") 
 							div(class="summary-split-table-content monospace")
 								if (result.getblock.miner)
 									span #{result.getblock.miner.name} 
@@ -186,9 +186,9 @@ div(class="tab-content")
 					div(class="col-md-4")
 						h2(class="h6 mb-0") #{txCount.toLocaleString()} 
 							if (txCount == 1)
-								span Transaction
+								span(i18n-content="Transaction")
 							else
-								span Transactions
+								span(i18n-content="Transactions")
 
 					if (!config.demoSite && !crawlerBot && txCount > 20)
 						div(class="col-md-8 text-right")

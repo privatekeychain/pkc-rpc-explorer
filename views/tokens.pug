@@ -1,32 +1,32 @@
 extends layout
 
 block headContent
-	title Tokens
+	title(i18n-content="TOKENS")
 
 block content
-	h1(class="h3") TOKENS
+	h1(class="h3" i18n-content="TOKENS") 
 	hr
 	link(rel="stylesheet", href="/newcss/font-awesome.min.css")
 	link(rel="stylesheet", href="/newcss/style.css")
 	div(class="main-container")
 			div(class="container" style="max-width:1140px;")
 				div(class="flexslider")
-					h1 Coming Soon
+					h1(i18n-content="Coming_Soon")
 					div(class="countdown-wrapper")
 						div(class="countdown-showcase")
 							ul(class="countdown")
 								li 
 									span(id="days") 000 
-									p(style="font-size:14px;text-align:center") Days
+									p(style="font-size:14px;text-align:center" i18n-content="Days") 
 								li
 									span(id="hours") 00 
-									p(style="font-size:14px;text-align:center") Hours
+									p(style="font-size:14px;text-align:center" i18n-content="Hours") 
 								li
 									span(id="minutes") 00
-									p(style="font-size:14px;text-align:center") Minutes
+									p(style="font-size:14px;text-align:center" i18n-content="Minutes") 
 								li
 									span(id="seconds") 00 
-									p(style="font-size:14px;text-align:center") Seconds
+									p(style="font-size:14px;text-align:center" i18n-content="Seconds") 
 	script(src="/js/jquery-1.10.2.js")
 	script(src="/js/bootstrap.min.js")
 	script(src="/js/countdown.js")

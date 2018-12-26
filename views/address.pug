@@ -6,11 +6,11 @@ block headContent
 block content
 	if (result && result.validateaddress)
 		if (!result.validateaddress.isvalid)
-			h1(class="h3 text-danger") Invalid Address
+			h1(class="h3 text-danger" i18n-content="Invalid_Address")
 				br
 				small(class="monospace") #{address}
 		else
-			h1(class="h3") Address
+			h1(class="h3" i18n-content="Address")
 				br
 				small(class="monospace") #{address}
 			
@@ -62,7 +62,7 @@ block content
 
 							if (saInfo.referenceUrl && saInfo.referenceUrl.trim().length > 0 && saInfo.alertBodyHtml.indexOf(saInfo.referenceUrl) == -1)
 								span  
-									a(href=saInfo.referenceUrl) Read more
+									a(href=saInfo.referenceUrl i18n-content="Read_more")
 
 					else
 						p
@@ -70,7 +70,7 @@ block content
 
 							if (saInfo.referenceUrl && saInfo.referenceUrl.trim().length > 0)
 								span  
-									a(href=saInfo.referenceUrl) Read more
+									a(href=saInfo.referenceUrl i18n-content="Read_more")
 
 
 			if (false)
@@ -79,9 +79,9 @@ block content
 			
 			ul(class='nav nav-tabs mb-3')
 				li(class="nav-item")
-					a(data-toggle="tab", href="#tab-details", class="nav-link active", role="tab") Details
+					a(data-toggle="tab", href="#tab-details", class="nav-link active", role="tab" i18n-content="Details" ) 
 				li(class="nav-item")
-					a(data-toggle="tab", href="#tab-json", class="nav-link", role="tab") JSON
+					a(data-toggle="tab", href="#tab-json", class="nav-link", role="tab" i18n-content="JSON")
 
 
 			div(class="tab-content")
@@ -93,7 +93,7 @@ block content
 								h4(class="alert-heading h6 font-weight-bold") Note
 								p Since this explorer is database-free, it doesn't natively support address balances and transaction histories. In order to provide this functionality, address balances and transaction history can be requested from a configurable set of ElectrumX servers. If multiple ElectrumX servers are configured, the results are cross-referenced and conflicts noted. For the transaction history displayed below, only the transaction identifiers from ElectrumX are used; the transaction details are requested via RPC from this app's primary node, as usual.
 
-								span(class="font-weight-bold") Configured ElectrumX Servers
+								span(class="font-weight-bold" i18n-content="Configured_ElectrumX_Servers")
 								ul
 									each server in config.electrumXServers
 										li
@@ -105,7 +105,7 @@ block content
 
 					div(class="card mb-3")
 						div(class="card-header")
-							span(class="h6") Summary
+							span(class="h6" i18n-content="Summary") 
 						div(class="card-body")
 							div(class="row")
 								div(class="col-md-6")
@@ -117,27 +117,27 @@ block content
 
 									if (result.validateaddress.scriptPubKey)
 										div(class="row")
-											div(class="summary-split-table-label") Script Public Key
+											div(class="summary-split-table-label" i18n-content="Script_Public_Key") 
 											div(class="summary-split-table-content monospace") #{result.validateaddress.scriptPubKey}
 
 									if (addressObj.hasOwnProperty("version"))
 										div(class="row")
-											div(class="summary-split-table-label") Version
+											div(class="summary-split-table-label" i18n-content="Version") 
 											div(class="summary-split-table-content monospace") #{addressObj.version}
 
 									if (result.validateaddress.hasOwnProperty("witness_version"))
 										div(class="row")
-											div(class="summary-split-table-label") Witness Version
+											div(class="summary-split-table-label" i18n-content="Witness_Version") 
 											div(class="summary-split-table-content monospace") #{result.validateaddress.witness_version}
 
 									if (result.validateaddress.witness_program)
 										div(class="row")
-											div(class="summary-split-table-label") Witness Program
+											div(class="summary-split-table-label" i18n-content="Witness_Program") 
 											div(class="summary-split-table-content monospace") #{result.validateaddress.witness_program}
 
 									if (firstSeenTransaction)
 										div(class="row")
-											div(class="summary-split-table-label") First Seen
+											div(class="summary-split-table-label" i18n-content="First_Seen") 
 											div(class="summary-split-table-content monospace")
 												if (getblockchaininfo)
 													span Block ##{(getblockchaininfo.blocks - firstSeenTransaction.confirmations).toLocaleString()}
@@ -157,9 +157,9 @@ block content
 									if (balance)
 										if (balance.conflictedResults)
 											div(class="row")
-												div(class="summary-split-table-label") Balance
+												div(class="summary-split-table-label" i18n-content="Balance")
 												div(class="summary-split-table-content monospace")
-													span(class="text-danger") Conflicted ElectrumX Results
+													span(class="text-danger" i18n-content="Conflicted_ElectrumX_Results") 
 
 													each item in balance.conflictedResults
 														- var currencyValue = item.confirmed / coinConfig.baseCurrencyUnit.multiplier;
@@ -168,32 +168,32 @@ block content
 
 										else
 											div(class="row")
-												div(class="summary-split-table-label") Balance
+												div(class="summary-split-table-label" i18n-content="Balance") 
 												div(class="summary-split-table-content monospace")
 													- var currencyValue = balance.result.confirmed / coinConfig.baseCurrencyUnit.multiplier;
 													include includes/value-display.pug
 
 											if (balance.unconfirmed)
 												div(class="row")
-													div(class="summary-split-table-label") Unconfirmed
+													div(class="summary-split-table-label" i18n-content="Unconfirmed") 
 													div(class="summary-split-table-content monospace")
 														- var currencyValue = balance.unconfirmed / coinConfig.baseCurrencyUnit.multiplier;
 														include includes/value-display.pug
 
 									if (electrumHistory)
 										div(class="row")
-											div(class="summary-split-table-label") Transactions
+											div(class="summary-split-table-label" i18n-content="Transactions") 
 											div(class="summary-split-table-content monospace") #{electrumHistory.result.length.toLocaleString()}
 
 									div(class="row")
-										div(class="summary-split-table-label") QR Code
+										div(class="summary-split-table-label" i18n-content="QR_Code") 
 										div(class="summary-split-table-content monospace")
 											img(src=addressQrCodeUrl, alt=address, style="border: solid 1px #ccc;")
 
 								div(class="col-md-6")
 									if (electrumScripthash)
 										div(class="row")
-											div(class="summary-split-table-label") Scripthash
+											div(class="summary-split-table-label" i18n-content="Scripthash") 
 											div(class="summary-split-table-content monospace") #{electrumScripthash}
 
 									- var x = result.validateaddress;
@@ -212,16 +212,16 @@ block content
 					if (false)
 						div(class="card mb-3")
 							div(class="card-header")
-								span(class="h6") Flags
+								span(class="h6" i18n-cotent="Flags") 
 							div(class="card-body")
 								table(class="table table-responsive-sm text-center")
 									thead
 										tr
-											th Is Valid?
-											th Is Script?
-											th Is Witness?
-											th Is Mine?
-											th Is Watch-Only?
+											th(i18n-content="Is_Valid_") 
+											th(i18n-content="Is_Script_")
+											th(i18n-content="Is_Witness_")
+											th(i18n-content="Is_Mine_")
+											th(i18n-content="Is_Watch_Only_")
 									tbody
 										tr
 											- var x = result.validateaddress;
@@ -240,36 +240,38 @@ block content
 								span(class="h6")
 									if (txids)
 										if (txids.length == 1)
-											span 1 Transaction
+											span 1 
+											span(i18n-content="Transaction")
 										else
-											span #{txids.length.toLocaleString()} Transactions
+											span #{txids.length.toLocaleString()} 
+											span(i18n-content="Transaction")
 									else
-										span Transactions
+										span(i18n-content="Transactions") 
 
 							if (!crawlerBot && txids && txids.length > 1)
 								div(class="float-right")
 									a(href="#", class="pull-right dropdown-toggle", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false")
 										if (sort == "desc")
-											span Newest First
+											span(i18n-content="Newest_First")
 										else
-											span Oldest First
+											span(i18n-content="Oldest_First")
 
 									div(class="dropdown-menu dropdown-menu-right")
 										a(href=("/address/" + address), class="dropdown-item")
 											if (sort == "desc")
 												i(class="fa fa-check") 
-											span  Newest First
+											span(i18n-content="Newest_First")
 										a(href=("/address/" + address + "?sort=asc"), class="dropdown-item")
 											if (sort != "desc")
 												i(class="fa fa-check") 
-											span  Oldest First
+											span(i18n-content="Oldest_First")
 
 						div(class="card-body")
 							if (conflictedTxidResults)
 								div(class="alert alert-warning", style="padding-bottom: 0;")
 									div(class="float-left", style="width: 55px; height: 50px; font-size: 18px;")
 										i(class="fas fa-exclamation-triangle fa-2x", style="margin-top: 10px;")
-									h4(class="alert-heading h6 font-weight-bold") Trust Warning
+									h4(class="alert-heading h6 font-weight-bold" i18n-content="Trust_Warning") 
 									p
 										span The transaction history for this address was requested from mulitple ElectrumX servers and the results did not match. The results below were obtained only from 
 										span(class="font-weight-bold") #{electrumHistory.server}
@@ -282,7 +284,7 @@ block content
 									span  for more information.
 
 								else if (transactions.length == 0)
-									span No transactions found
+									span(i18n-content="No_transactions_found")
 
 								each tx, txIndex in transactions
 									//pre
@@ -314,7 +316,7 @@ block content
 															include includes/time-ago.pug
 
 														else
-															span(class="text-danger") Unconfirmed
+															span(class="text-danger" i18n-content="Unconfirmed")
 
 												div(class="col")
 													if (addrGainsByTx[tx.txid])

@@ -1,10 +1,10 @@
 extends layout
 
 block headContent
-	title Unconfirmed Transactions
+	title(i18n-content="Unconfirmed_Transactions")
 
 block content
-	h1(class="h2") Unconfirmed Transactions
+	h1(class="h2" i18n-content="Unconfirmed_Transactions") 
 	hr
 
 	if (false)
@@ -18,9 +18,11 @@ block content
 			div(class="card-header")
 				span(class="h6")
 					if (txCount == 1)
-						span 1 Transaction
+						span 1 
+						span(i18n-content="Transaction")
 					else
-						span #{txCount.toLocaleString()} Transactions
+						span #{txCount.toLocaleString()} 
+						span(i18n-content="Transactions")
 
 			div(class="card-body")
 				each tx, txIndex in mempoolDetails.transactions
@@ -51,4 +53,4 @@ block content
 
 					include includes/pagination.pug
 	else
-		p No unconfirmed transactions found
+		p(i18n-content="No_unconfirmed_transactions_found")

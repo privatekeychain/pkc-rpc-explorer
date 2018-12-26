@@ -1,17 +1,17 @@
 extends layout
 
 block headContent
-	title RPC Terminal
+	title(i18n-content="RPC_Terminal")
 
 block content
 	div(class="row")
 		div(class="col")
-			h1(class="h3") RPC Terminal
+			h1(class="h3" i18n-content="RPC_Terminal")
 
 		div(class="col")
 			if (!config.demoSite && (!config.credentials.rpc || !config.credentials.rpc.rpc))
 				span(style="float: right;")
-					a(href="/disconnect", class="btn btn-secondary") Disconnect from node
+					a(href="/disconnect", class="btn btn-secondary" i18n-content="Disconnect_from_node") 
 	
 	hr
 
@@ -22,7 +22,7 @@ block content
 		div(class="card-body")
 			form(id="terminal-form")
 				div(class="form-group")
-					label(for="input-cmd") Command
+					label(for="input-cmd" i18n-content="Command") 
 					input(type="text", id="input-cmd", name="cmd", class="form-control")
 
 				input(type="submit", class="btn btn-primary btn-block", value="Send")

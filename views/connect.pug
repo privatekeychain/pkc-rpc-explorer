@@ -1,25 +1,25 @@
 extends layout
 
 block content
-	h1(class="h2") RPC Connect
+	h1(class="h2" i18n-content="RPC_Connect") 
 	hr
 
 	form(method="post", action="/connect")
 		div(class="form-group")
-			label(for="input-host") Host / IP
-			input(id="input-host", type="text", name="host", class="form-control", placeholder="Host / IP", value=host)
+			label(for="input-host" i18n-content="Host_IP") 
+			input(id="input-host", type="text", name="host", class="form-control", i18n-placeholder="Host_IP", value=host)
 
 		div(class="form-group")
-			label(for="input-port") Port
-			input(id="input-port", type="text", name="port", class="form-control", placeholder="Port", value=port)
+			label(for="input-port" i18n-content="Port") 
+			input(id="input-port", type="text", name="port", class="form-control", i18n-placeholder="Port", value=port)
 
 		div(class="form-group")
-			label(for="input-username") Username
-			input(id="input-username", type="text", name="username", class="form-control", placeholder="Username", value=username)
+			label(for="input-username" i18n-content="Username") 
+			input(id="input-username", type="text", name="username", class="form-control", i18n-placeholder="Username", value=username)
 
 		div(class="form-group")
-			label(for="input-password") Password
-			input(id="input-password", type="password", name="password", class="form-control", placeholder="Password")
+			label(for="input-password" i18n-content="Password") 
+			input(id="input-password", type="password", name="password", class="form-control", i18n-placeholder="Password")
 
 		div(class="form-group")
 			input(type="submit", class="btn btn-primary btn-block" value="Connect")

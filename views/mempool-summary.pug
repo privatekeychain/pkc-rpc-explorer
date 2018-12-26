@@ -1,10 +1,10 @@
 extends layout
 
 block headContent
-	title Mempool Summary
+	title(i18n-content="Mempool_Summary")
 	
 block content
-	h1(class="h3") Mempool Summary
+	h1(class="h3" i18n-content="Mempool_Summary")
 	hr
 
 	if (false)
@@ -14,31 +14,33 @@ block content
 	if (true)
 		div(class="card mb-3")
 			div(class="card-header")
-				span(class="h6") Summary
+				span(class="h6" i18n-content="Summary") 
 			div(class="card-body")
 				table(class="table details-table mb-0")
 					tr
-						td(class="properties-header") Transaction Count
+						td(class="properties-header" i18n-content="Transaction_Count")
 						td #{getmempoolinfo.size.toLocaleString()}
 
 					tr
 						- var mem1Data = utils.formatLargeNumber(getmempoolinfo.usage, 2);
 						- var mem2Data = utils.formatLargeNumber(getmempoolinfo.bytes, 2);
 
-						td(class="properties-header") Memory Usage
+						td(class="properties-header" i18n-content="Memory_Usage")
 						td(class="monospace")
 							span #{mem1Data[0]} #{mem1Data[1].abbreviation}B
-							span(class="text-muted")  (virtual size: #{mem2Data[0]} #{mem2Data[1].abbreviation}B)
+							span(class="text-muted")  (
+							span(i18n-content="virtual_size")
+							span : #{mem2Data[0]} #{mem2Data[1].abbreviation}B)
 
 					tr
-						td(class="properties-header") Total Fees
+						td(class="properties-header" i18n-content="Total_Fees") 
 						td(class="monospace")
 							- var currencyValue = mempoolstats["totalFees"];
 							include includes/value-display.pug
 							
 					if (getmempoolinfo.size > 0)
 						tr
-							td(class="properties-header") Average Fee
+							td(class="properties-header" i18n-content="Average_Fee") 
 							td(class="monospace") #{utils.formatCurrencyAmount(mempoolstats["averageFee"], currencyFormatType)}
 								if (global.exchangeRate)
 									span  
@@ -46,11 +48,11 @@ block content
 										i(class="fas fa-exchange-alt")
 
 						tr
-							td(class="properties-header") Average Fee per Byte
+							td(class="properties-header" i18n-content="Average_Fee_per_Byte") 
 							td(class="monospace") #{utils.formatCurrencyAmountInSmallestUnits(mempoolstats["averageFeePerByte"], 2)}/B
 
 		if (getmempoolinfo.size > 0)
-			h2(class="h5") Transactions by fee rate
+			h2(class="h5" i18n-content="Transactions_by_fee_rate") 
 			hr
 
 			if (false)
@@ -69,7 +71,7 @@ block content
 				
 				canvas(id="mempoolBarChart", height="100", class="mb-4")
 
-				script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js")
+				script(src="/js/Chart.bundle.min.js")
 
 				script var feeBucketLabels = [];
 				script var bgColors = [];
@@ -108,11 +110,11 @@ block content
 			table(class="table table-striped table-responsive-sm mb-4")
 				thead
 					tr
-						th Fee Rate
-						th(class="text-right") Tx Count
-						th(class="text-right") Total Fees
-						th(class="text-right") Average Fee
-						th(class="text-right") Average Fee Rate
+						th(i18n-content="Fee_Rate")
+						th(class="text-right" i18n-content="Tx_Count") 
+						th(class="text-right" i18n-content="Total_Fees") 
+						th(class="text-right" i18n-content="Average_Fee") 
+						th(class="text-right" i18n-content="Average_Fee_Rate") 
 				tbody
 					each item, index in mempoolstats["satoshiPerByteBuckets"]
 						tr
@@ -136,7 +138,7 @@ block content
 								td(class="text-right monospace") -
 
 
-			h2(class="h5") Transactions by size
+			h2(class="h5" i18n-content="Transactions_by_size") 
 			hr
 
 			canvas(id="txSizesBarChart", height="100", class="mb-4")
@@ -175,7 +177,7 @@ block content
 					}
 				});
 
-			h2(class="h5") Transactions by age
+			h2(class="h5" i18n-content="Transactions_by_age") 
 			hr
 
 			canvas(id="txAgesBarChart", height="100", class="mb-4")

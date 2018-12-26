@@ -10,18 +10,18 @@ block headContent
 
 block content
 	if (result && result.getrawtransaction)
-		h1(class="h3 word-wrap") Transaction 
+		h1(class="h3 word-wrap" i18n-content="Transaction")  
 			br
 			small(class="monospace") #{txid}
 		hr
 
 		ul(class='nav nav-tabs mb-3')
 			li(class="nav-item")
-				a(data-toggle="tab", href="#tab-details", class="nav-link active", role="tab") Details
+				a(data-toggle="tab", href="#tab-details", class="nav-link active", role="tab" i18n-content="Details") 
 			li(class="nav-item")
-				a(data-toggle="tab", href="#tab-scripts", class="nav-link", role="tab") Scripts
+				a(data-toggle="tab", href="#tab-scripts", class="nav-link", role="tab" i18n-content="Scripts") 
 			li(class="nav-item")
-				a(data-toggle="tab", href="#tab-json", class="nav-link", role="tab") JSON
+				a(data-toggle="tab", href="#tab-json", class="nav-link", role="tab" i18n-content="JSON") 
 
 		- DecimalRounded = Decimal.clone({ precision: 4, rounding: 2 })
 
@@ -55,14 +55,14 @@ block content
 
 								if (stInfo.referenceUrl && stInfo.referenceUrl.trim().length > 0 && stInfo.alertBodyHtml.indexOf(stInfo.referenceUrl) == -1)
 									span  
-										a(href=stInfo.referenceUrl) Read more
+										a(href=stInfo.referenceUrl i18n-content="Read_more")
 						else
 							p
 								span #{stInfo.summary}
 
 								if (stInfo.referenceUrl && stInfo.referenceUrl.trim().length > 0)
 									span  
-										a(href=stInfo.referenceUrl) Read more
+										a(href=stInfo.referenceUrl i18n-content="Read_more") 
 
 				- var isTxConfirmed = true;
 				if (!result.getrawtransaction.confirmations || result.getrawtransaction.confirmations == 0)
@@ -70,17 +70,17 @@ block content
 
 				div(class="card mb-3")
 					div(class="card-header")
-						span(class="h6") Summary
+						span(class="h6" i18n-content="Summary") 
 					div(class="card-body")
 						if (!isTxConfirmed)
 							div(class="row")
-								div(class="summary-table-label") Status
+								div(class="summary-table-label" i18n-content="Status") 
 								div(class="summary-table-content monospace")
-									span(class="text-danger") Unconfirmed
+									span(class="text-danger" i18n-content="Unconfirmed") 
 
 						if (isTxConfirmed)
 							div(class="row")
-								div(class="summary-table-label") Block
+								div(class="summary-table-label" i18n-content="Block") 
 								div(class="summary-table-content monospace")
 									a(href=("/block/" + result.getrawtransaction.blockhash)) #{result.getrawtransaction.blockhash}
 									if (result.getblock.height)
@@ -89,7 +89,7 @@ block content
 
 						if (isTxConfirmed)
 							div(class="row")
-								div(class="summary-table-label") Timestamp
+								div(class="summary-table-label" i18n-content="Timestamp") 
 								div(class="summary-table-content monospace")
 									if (result.getrawtransaction.time)
 										td(class="monospace") #{moment.utc(new Date(result.getrawtransaction["time"] * 1000)).format("Y-MM-DD HH:mm:ss")} utc
@@ -97,21 +97,21 @@ block content
 											include includes/time-ago.pug
 
 						div(class="row")
-							div(class="summary-table-label") Version
+							div(class="summary-table-label" i18n-content="Version") 
 							div(class="summary-table-content monospace") #{result.getrawtransaction.version}
 
 						if (result.getrawtransaction.vsize != result.getrawtransaction.size)
 							div(class="row")
-								div(class="summary-table-label") Virtual Size
+								div(class="summary-table-label" i18n-content="Virtual_Size") 
 								div(class="summary-table-content monospace") #{result.getrawtransaction.vsize.toLocaleString()} VB
 
 						div(class="row")
-							div(class="summary-table-label") Size
+							div(class="summary-table-label" i18n-content="Size") 
 							div(class="summary-table-content monospace") #{result.getrawtransaction.size.toLocaleString()} B
 
 						if (result.getrawtransaction.locktime > 0)
 							div(class="row")
-								div(class="summary-table-label") Locktime
+								div(class="summary-table-label" i18n-content="Locktime") 
 								div(class="summary-table-content monospace")
 									if (result.getrawtransaction.locktime < 500000000)
 										span Spendable in block 
@@ -126,7 +126,7 @@ block content
 
 						if (isTxConfirmed)
 							div(class="row")
-								div(class="summary-table-label") Confirmations
+								div(class="summary-table-label" i18n-content="Confirmations") 
 								div(class="summary-table-content monospace")
 									if (!result.getrawtransaction.confirmations || result.getrawtransaction.confirmations == 0)
 										strong(class="text-danger") 0 (unconfirmed)
@@ -140,7 +140,7 @@ block content
 
 						if (result.getrawtransaction.vin[0].coinbase)
 							div(class="row")
-								div(class="summary-table-label") Fees Collected
+								div(class="summary-table-label" i18n-content="Fees_Collected") 
 								div(class="summary-table-content monospace")
 									- var currencyValue = new Decimal(totalOutputValue).minus(totalInputValue);
 									include includes/value-display.pug
@@ -148,7 +148,7 @@ block content
 							- var blockRewardMax = coinConfig.blockRewardFunction(result.getblock.height);
 							if (totalOutputValue < blockRewardMax)
 								div(class="row")
-									div(class="summary-table-label") Fees Destroyed
+									div(class="summary-table-label" i18n-content="Fees_Destroyed") 
 									div(class="summary-table-content monospace")
 										- var currencyValue = new Decimal(blockRewardMax).minus(totalOutputValue);
 										include includes/value-display.pug
@@ -158,7 +158,7 @@ block content
 
 							- var minerInfo = utils.getMinerFromCoinbaseTx(result.getrawtransaction);
 							div(class="row")
-								div(class="summary-table-label") Miner
+								div(class="summary-table-label" i18n-content="Miner") 
 								div(class="summary-table-content monospace")
 									if (minerInfo)
 										span #{minerInfo.name} 
@@ -173,7 +173,7 @@ block content
 						else
 
 							div(class="row")
-								div(class="summary-table-label") Fee Paid
+								div(class="summary-table-label" i18n-content="Fee_Paid") 
 								div(class="summary-table-content monospace")
 									- var currencyValue = new Decimal(totalInputValue).minus(totalOutputValue);
 									include includes/value-display.pug
@@ -182,7 +182,7 @@ block content
 									span(class="text-muted")  (#{utils.formatCurrencyAmount(totalInputValue, currencyFormatType)} - #{utils.formatCurrencyAmount(totalOutputValue, currencyFormatType)})
 
 							div(class="row")
-								div(class="summary-table-label") Fee Rate
+								div(class="summary-table-label" i18n-content="Fee_Rate") 
 								div(class="summary-table-content monospace")
 									if (result.getrawtransaction.vsize != result.getrawtransaction.size)
 										span #{utils.addThousandsSeparators(new DecimalRounded(totalInputValue).minus(totalOutputValue).dividedBy(result.getrawtransaction.vsize).times(100000000))} sat/VB
@@ -194,7 +194,7 @@ block content
 				if (result.getrawtransaction.vin[0].coinbase)
 					div(class="card mb-3")
 						div(class="card-header")
-							h2(class="h6 mb-0") Coinbase
+							h2(class="h6 mb-0" i18n-content="Coinbase") 
 						div(class="card-body")
 							h6 Hex
 							div(style="background-color: #f0f0f0; padding: 5px 10px;", class="mb-3")
@@ -209,17 +209,17 @@ block content
 						h2(class="h6 mb-0")
 							span #{result.getrawtransaction.vin.length.toLocaleString()} 
 							if (result.getrawtransaction.vin.length == 1)
-								span Input
+								span(i18n-content="Input")
 							else
-								span Inputs
+								span(i18n-content="Inputs")
 
 							span , 
 
 							span #{result.getrawtransaction.vout.length.toLocaleString()} 
 							if (result.getrawtransaction.vout.length == 1)
-								span Output
+								span(i18n-content="Output")
 							else
-								span Outputs
+								span(i18n-content="Outputs")
 
 					
 					div(class="card-body")
@@ -236,13 +236,13 @@ block content
 			div(id="tab-scripts", class="tab-pane", role="tabpanel")
 				div(class="card mb-3")
 					div(class="card-header")
-						span(class="h6") Input Scripts
+						span(class="h6" i18n-content="Input_Scripts")
 					div(class="card-body")
 						table(class="table table-striped mb-5")
 							thead
 								tr
 									th(style="width: 50px;")
-									th Script Sig (asm)
+									th(i18n-content="Script_Sig_asm_")
 							tbody
 								each vin, vinIndex in result.getrawtransaction.vin
 									tr
@@ -257,7 +257,7 @@ block content
 
 											else if (vin.coinbase)
 												div(style="line-height: 1.75em;")
-													span(class="tag") coinbase
+													span(class="tag" i18n-content="coinbase") 
 													br
 													span(class="word-wrap monospace") #{vin.coinbase}
 													br
@@ -265,13 +265,13 @@ block content
 
 				div(class="card mb-3")
 					div(class="card-header")
-						span(class="h6") Output Scripts
+						span(class="h6" i18n-content="Output_Scripts") 
 					div(class="card-body")
 						table(class="table table-striped")
 							thead
 								tr
 									th(style="width: 50px;")
-									th Script Pub Key (asm)
+									th(i18n-content="Script_Pub_Key_asm_")
 							tbody
 								each vout, voutIndex in result.getrawtransaction.vout
 									tr

@@ -45,8 +45,8 @@ router.get("/", function (req, res) {
 	// var chainTxStatsIntervals = [5, 50, 100, 150, 205];
 	// res.locals.chainTxStatsLabels = ["24 hours", "1 week", "1 month", "1 year", "All time"];
 
-    var chainTxStatsIntervals = [];
-    res.locals.chainTxStatsLabels = [];
+	var chainTxStatsIntervals = [];
+	res.locals.chainTxStatsLabels = [];
 
 	for (var i = 0; i < chainTxStatsIntervals.length; i++) {
 		promises.push(coreApi.getChainTxStats(chainTxStatsIntervals[i]));
@@ -288,7 +288,12 @@ router.get("/blocks", function (req, res) {
 
 router.get("/search", function (req, res) {
 	if (!req.body.query) {
-		req.session.userMessage = "Enter a block height, block hash, or transaction id.";
+		if (req.session.locate != "english") {
+			req.session.userMessage = "输入区块高度，区块哈希，或交易编号，钱包地址";
+		} else {
+			req.session.userMessage = "Enter a block height, block hash, or transaction id.";
+		}
+
 		req.session.userMessageType = "primary";
 
 		res.render("search");
@@ -299,7 +304,11 @@ router.get("/search", function (req, res) {
 
 router.post("/search", function (req, res) {
 	if (!req.body.query) {
-		req.session.userMessage = "Enter a block height, block hash, or transaction id.";
+		if (req.session.locate != "english") {
+			req.session.userMessage = "输入区块高度，区块哈希，或交易编号，钱包地址";
+		} else {
+			req.session.userMessage = "Enter a block height, block hash, or transaction id.";
+		}
 
 		res.redirect("/");
 
@@ -333,13 +342,20 @@ router.post("/search", function (req, res) {
 						return;
 					}
 				});
-
-				req.session.userMessage = "No results found for query: " + query;
+				if (req.session.locate != "english") {
+					req.session.userMessage = "未查询到结果: " + query;
+				} else {
+					req.session.userMessage = "No results found for query: " + query;
+				}
 
 				res.redirect("/");
 
 			}).catch(function (err) {
-				req.session.userMessage = "No results found for query: " + query;
+				if (req.session.locate != "english") {
+					req.session.userMessage = "未查询到结果: " + query;
+				} else {
+					req.session.userMessage = "No results found for query: " + query;
+				}
 
 				res.redirect("/");
 			});
@@ -352,12 +368,20 @@ router.post("/search", function (req, res) {
 					return;
 				}
 
-				req.session.userMessage = "No results found for query: " + query;
+				if (req.session.locate != "english") {
+					req.session.userMessage = "未查询到结果: " + query;
+				} else {
+					req.session.userMessage = "No results found for query: " + query;
+				}
 
 				res.redirect("/");
 
 			}).catch(function (err) {
-				req.session.userMessage = "No results found for query: " + query;
+				if (req.session.locate != "english") {
+					req.session.userMessage = "未查询到结果: " + query;
+				} else {
+					req.session.userMessage = "No results found for query: " + query;
+				}
 
 				res.redirect("/");
 			});
@@ -371,7 +395,11 @@ router.post("/search", function (req, res) {
 				return;
 			}
 
-			req.session.userMessage = "No results found for query: " + query;
+			if (req.session.locate != "english") {
+				req.session.userMessage = "未查询到结果: " + query;
+			} else {
+				req.session.userMessage = "No results found for query: " + query;
+			}
 
 			res.redirect("/");
 		});
@@ -383,7 +411,11 @@ router.post("/search", function (req, res) {
 				return;
 			}
 
-			req.session.userMessage = "No results found for query: " + rawCaseQuery;
+			if (req.session.locate != "english") {
+				req.session.userMessage = "未查询到结果: " + query;
+			} else {
+				req.session.userMessage = "No results found for query: " + query;
+			}
 
 			res.redirect("/");
 		});

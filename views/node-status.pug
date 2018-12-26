@@ -1,15 +1,15 @@
 extends layout
 
 block headContent
-	title Node Status
+	title(i18n-content="Node_Status")
 	
 block content
-	h1(class="h3") Node Status
+	h1(class="h3" i18n-content="Node_Status")
 	hr
 
 	if (getblockchaininfo)
 		if (false)
-			p Data from RPC commands 
+			p(i18n-content="Data_from_RPC_commands") 
 				a(href="/rpc-browser?method=getblockchaininfo") getblockchaininfo
 				span , 
 				a(href="/rpc-browser?method=getnetworkinfo") getnetworkinfo
@@ -23,44 +23,48 @@ block content
 		if (global.client)
 			div(class="card mb-3")
 				div(class="card-header")
-					span(class="h6") Summary
+					span(class="h6" i18n-content="Summary") 
 				div(class="card-body")
 					table(class="table details-table mb-0")
 						tr
-							td(class="properties-header") Host : Port
+							td(class="properties-header" i18n-content="Host__Port") 
 							td(class="monospace") #{global.client.host + " : " + global.client.port}
 
 						tr
-							td(class="properties-header") Chain
+							td(class="properties-header" i18n-content="Chain") 
 							td(class="monospace") #{getblockchaininfo.chain}
 						tr
-							td(class="properties-header") Version
+							td(class="properties-header" i18n-content="Version") 
 							td(class="monospace") #{getnetworkinfo.version}
 								span(class="monospace")  (#{getnetworkinfo.subversion})
 						tr
-							td(class="properties-header") Protocol Version
+							td(class="properties-header" i18n-conent="Protocol_Version") 
 							td(class="monospace") #{getnetworkinfo.protocolversion}
 
 						if (getblockchaininfo.size_on_disk)
 							- var sizeData = utils.formatLargeNumber(getblockchaininfo.size_on_disk, 2);
 							tr
-								td(class="properties-header") Blockchain Size
+								td(class="properties-header" i18n-conent="Blockchain_Size") 
 								td(class="monospace") #{sizeData[0]} #{sizeData[1].abbreviation}B
 									br
-									span(class="text-muted")  (pruned: #{getblockchaininfo.pruned})
+									span(class="text-muted")  (
+									span(i18n-content="pruned")
+									span : #{getblockchaininfo.pruned})
 						tr
-							td(class="properties-header") Connections
+							td(class="properties-header" i18n-content="Connections") 
 							td(class="monospace") #{getnetworkinfo.connections.toLocaleString()}
 
 						tr
-							td(class="properties-header") Block Count
+							td(class="properties-header" i18n-content="Block_Count") 
 							td(class="monospace") #{getblockchaininfo.blocks.toLocaleString()}
 								br
-								span(class="text-muted") (headers: #{getblockchaininfo.headers.toLocaleString()})
+								span(class="text-muted") (
+								span(i18n-content="headers")
+								span : #{getblockchaininfo.headers.toLocaleString()})
 						tr
 							- var scales = [ {val:1000000000000000, name:"quadrillion"}, {val:1000000000000, name:"trillion"}, {val:1000000000, name:"billion"}, {val:1000000, name:"million"} ];
 							- var scaleDone = false;
-							td(class="properties-header") Difficulty
+							td(class="properties-header" i18n-content="Difficulty") 
 							td(class="monospace")
 								- var difficultyData = utils.formatLargeNumber(getblockchaininfo.difficulty, 3);
 								
@@ -70,40 +74,46 @@ block content
 									sup #{difficultyData[1].exponent}
 
 						tr
-							td(class="properties-header") Status
+							td(class="properties-header" i18n-content="Status") 
 							td(class="monospace")
 								if (getblockchaininfo.initialblockdownload || getblockchaininfo.headers > getblockchaininfo.blocks)
 									span Initial block download progress #{100 *1}%
 								else
-									span Synchronized with network
+									span(i18n-content="Synchronized_with_network")
 
 						- var startTimeAgo = moment.duration(uptimeSeconds * 1000);
 						tr
-							td(class="properties-header") Uptime
+							td(class="properties-header" i18n-content="Uptime") 
 							td(class="monospace") #{startTimeAgo.format()}
 
 						tr
-							td(class="properties-header") Network Traffic
+							td(class="properties-header" i18n-content="Network_Traffic") 
 							td(class="monospace")
 								- var downData = utils.formatLargeNumber(getnettotals.totalbytesrecv, 2);
 								- var downRateData = utils.formatLargeNumber(getnettotals.totalbytesrecv / uptimeSeconds, 2);
 								- var upData = utils.formatLargeNumber(getnettotals.totalbytessent, 2);
 								- var upRateData = utils.formatLargeNumber(getnettotals.totalbytessent / uptimeSeconds, 2);
 
-								span Total Download: #{downData[0]} #{downData[1].abbreviation}B
-								span(class="text-muted")  (avg #{downRateData[0]} #{downRateData[1].abbreviation}B/s)
+								span(i18n-content="Total_Download")
+								span : #{downData[0]} #{downData[1].abbreviation}B
+								span(class="text-muted")  (
+								span(i18n-content="avg")
+								span  #{downRateData[0]} #{downRateData[1].abbreviation}B/s)
 								br
-								span Total Upload: #{upData[0]} #{upData[1].abbreviation}B
-								span(class="text-muted")  (avg #{upRateData[0]} #{upRateData[1].abbreviation}B/s)
+								span(i18n-content="Total_Upload")
+								span : #{upData[0]} #{upData[1].abbreviation}B
+								span(class="text-muted")  (
+								span(i18n-content="avg")
+								span  #{upRateData[0]} #{upRateData[1].abbreviation}B/s)
 
 						tr
-							td(class="properties-header") Warnings
+							td(class="properties-header" i18n-content="Warnings") 
 							td(class="monospace")
 								if (getblockchaininfo.warnings && getblockchaininfo.warnings.trim().length > 0)
 									span #{getblockchaininfo.warnings}
 								else
-									span None
+									span(i18n-content="None")
 							
 		else
-			div(class="alert alert-warning") No active RPC connection
+			div(class="alert alert-warning" i18n-content="No_active_RPC_connection") 
 										
