@@ -17,7 +17,7 @@ html(lang="en")
 		link(rel='stylesheet', href='/css/styling.css')
 
 		link(rel="icon", type="image/png", href=("/img/logo/pkc.png"))
-
+		script(src="/js/jquery-3.3.1.min.js")
 		block headContent
 			title(i18n-content="Explorer")
 		
@@ -158,7 +158,7 @@ html(lang="en")
 													a(href="http://www.pkc.ink") PKC官网
 												else
 													span 金科财经公众号		
-		script(src="/js/jquery-3.3.1.min.js")
+		
 		script(src="/js/di18n.min.js")
 		if(session.locate=="english")
 			script(src="/js/en.js")

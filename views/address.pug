@@ -1,18 +1,21 @@
 extends layout
 
 block headContent
-	title Address #{address}
+	if(session.locate=="english")
+		title Address #{address}
+	else
+		title 地址 #{address}
 
 block content
 	if (result && result.validateaddress)
 		if (!result.validateaddress.isvalid)
 			h1(class="h3 text-danger" i18n-content="Invalid_Address")
 				br
-				small(class="monospace") #{address}
+				span #{address}
 		else
 			h1(class="h3" i18n-content="Address")
-				br
-				small(class="monospace") #{address}
+
+			span(style="font-size:23px") #{address}
 			
 			hr
 
@@ -197,7 +200,10 @@ block content
 											div(class="summary-split-table-content monospace") #{electrumScripthash}
 
 									- var x = result.validateaddress;
-									- var flagNames = ["Is Valid?", "Is Script?", "Is Witness?", "Is Mine?", "Is Watch-Only?"];
+									if(session.locate=="engilish")
+										- var flagNames = ["Is Valid?", "Is Script?", "Is Witness?", "Is Mine?", "Is Watch-Only?"];
+									else
+										- var flagNames = ["是否正确?", "是否脚本?", "是否隔离验证?", "是否挖矿?", "是否只读?"];
 									- var flags = [x.isvalid, x.isscript, x.iswitness, x.ismine, x.iswatchonly];
 
 									each flagName, index in flagNames

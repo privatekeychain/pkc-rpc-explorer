@@ -1,7 +1,10 @@
 extends layout
 
 block headContent
-	title Transaction #{txid}
+	if(session.locate=="english")
+		title Transaction #{txid}
+	else
+		title 交易 #{txid}
 	style.
 		.field {
 			word-wrap: break-word;
@@ -10,9 +13,8 @@ block headContent
 
 block content
 	if (result && result.getrawtransaction)
-		h1(class="h3 word-wrap" i18n-content="Transaction")  
-			br
-			small(class="monospace") #{txid}
+		h3(class="h3 word-wrap" i18n-content="Transaction")  
+		span(style="font-size:20px") #{txid}
 		hr
 
 		ul(class='nav nav-tabs mb-3')

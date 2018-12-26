@@ -4,9 +4,11 @@ block headContent
 	title(i18n-content="TOKENS")
 
 block content
+	script(src="/js/countdown.js")
+	script(src="/js/jquery.flexslider.js")
 	h1(class="h3" i18n-content="TOKENS") 
 	hr
-	link(rel="stylesheet", href="/newcss/font-awesome.min.css")
+	//link(rel="stylesheet", href="/newcss/font-awesome.min.css")
 	link(rel="stylesheet", href="/newcss/style.css")
 	div(class="main-container")
 			div(class="container" style="max-width:1140px;")
@@ -27,8 +29,3 @@ block content
 								li
 									span(id="seconds") 00 
 									p(style="font-size:14px;text-align:center" i18n-content="Seconds") 
-	script(src="/js/jquery-1.10.2.js")
-	script(src="/js/bootstrap.min.js")
-	script(src="/js/countdown.js")
-	script(src="/js/jquery.flexslider.js")
-	script(src="/js/main.js")
