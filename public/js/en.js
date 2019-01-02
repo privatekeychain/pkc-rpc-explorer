@@ -175,7 +175,13 @@ const di18n = new DI18n({
             Connected_to: "Connected to",
             virtual_size: "virtual size",
             None_genesis_block_: "None (genesis block)",
-            None_latest_block_: "None (latest block)"
+            None_latest_block_: "None (latest block)",
+            aboutlingquan1: "LeadTrend Technology Co. Ltd. ShangHai Chain is a newly developed high technology business focusing on development and application of block chain underlying techniques which include private information storage and comprehensive application of biological techniques. ",
+            aboutlingquan2: "Meanwhile, our company has developed a series of block chain systems such as DBS, PKC, HWw, and Community Development Fund.",
+            aboutlingquan3: "",
+            aboutlingquan4: "",
+            pkchomepage: "PKC HomePage",
+            jkcaijing: "WeChat Number",
         },
 
     }

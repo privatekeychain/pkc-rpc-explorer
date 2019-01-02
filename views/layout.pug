@@ -155,9 +155,9 @@ html(lang="en")
 													img(src="/img/caijing.jpg",style="border: solid 1px #ccc;" width="148px" height="148px")
 													br
 												if (coinConfig.ticker == coin)
-													a(href="http://www.pkc.ink") PKC官网
+													a(href="http://www.pkc.ink" i18n-content="pkchomepage")
 												else
-													span 金科财经公众号		
+													span(i18n-content="jkcaijing")
 		
 		script(src="/js/di18n.min.js")
 		if(session.locate=="english")

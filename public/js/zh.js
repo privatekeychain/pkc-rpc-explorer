@@ -175,7 +175,13 @@ const di18n = new DI18n({
             Connected_to: "已连接",
             virtual_size: "虚拟内存",
             None_genesis_block_: "无 （创世区块）",
-            None_latest_block_: "无 (当前为最新区块)"
+            None_latest_block_: "无 (当前为最新区块)",
+            aboutlingquan1: "零圈科技是一家新兴的高科技企业，致力于区块链底层技术的研发与应用。",
+            aboutlingquan2: "研发范围包括隐私信息存储、生物科技整合应用等。",
+            aboutlingquan3: "同时为了响应党和国家的号召积极推进区块链行业发展，落地技术应用达到真正技术赋能实体经济的目标，公司建立了一系列的区块链生态。",
+            aboutlingquan4: "详细请查询官网。",
+            pkchomepage: "PKC官网",
+            jkcaijing: "金科财经公众号",
         }
     }
 })
