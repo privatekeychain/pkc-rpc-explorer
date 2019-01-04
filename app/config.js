@@ -74,7 +74,7 @@ module.exports = {
 
   // https://uasf.saltylemon.org/electrum
   electrumXServers: [{
-      host: "192.168.0.211",
+      host: "127.0.0.1",
       port: 50001,
       protocol: "tcp"
     }
