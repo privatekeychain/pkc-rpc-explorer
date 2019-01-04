@@ -72,14 +72,14 @@ module.exports = {
 		100,
 		150
 	],
-	genesisBlockHash: "286aa914aab3ad788587cffd7c8a39ec1e2a8bc7b0e078b16e120d6040616215",
-	genesisCoinbaseTransactionId: "406d256a92b7202d95783cdfcccbb3df8065cda17648f3a6daeabea7c19917c6",
+	genesisBlockHash: "1411465213975a714e3f1016521d9ee1c8b009c88c2389944a835dff4528a9aa",
+	genesisCoinbaseTransactionId: "287e1eefaf08b141a070883511d3a3bf69e827b78f54674ab7a74d2898b0df62",
 	genesisCoinbaseTransaction: {
-		hex: "01000000010000000000000000000000000000000000000000000000000000000000000000ffffffff0804ffff001d02fd04ffffffff0100f2052a01000000434104f5eeb2b10c944c6b9fbcfff94c35bdeecd93df977882babc7f3a2cf7f5c81d3b09a68db7f0e04f21de5d4230e75e6dbe7ad16eefe0d4325a62067dc6f369446aac00000000",
-		txid: "406d256a92b7202d95783cdfcccbb3df8065cda17648f3a6daeabea7c19917c6",
-		hash: "406d256a92b7202d95783cdfcccbb3df8065cda17648f3a6daeabea7c19917c6",
-		size: 454,
-		vsize: 454,
+		hex: "01000000010000000000000000000000000000000000000000000000000000000000000000ffffffff4d04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73ffffffff01007400d3c7a2b100232103f44b1101ebe92c43dfcd28b45c8c937fa8bf6ecbdde90503202e40728f7a1429ac00000000",
+		txid: "287e1eefaf08b141a070883511d3a3bf69e827b78f54674ab7a74d2898b0df62",
+		hash: "287e1eefaf08b141a070883511d3a3bf69e827b78f54674ab7a74d2898b0df62",
+		size: 172,
+		vsize: 172,
 		version: 1,
 		confirmations: 475000,
 		vin: [{
@@ -87,27 +87,27 @@ module.exports = {
 			sequence: 4294967295
 		}],
 		vout: [{
-			value: 500,
+			value: 500000500,
 			n: 0,
 			scriptPubKey: {
-				asm: "04f5eeb2b10c944c6b9fbcfff94c35bdeecd93df977882babc7f3a2cf7f5c81d3b09a68db7f0e04f21de5d4230e75e6dbe7ad16eefe0d4325a62067dc6f369446a OP_CHECKSIG",
-				hex: "4104f5eeb2b10c944c6b9fbcfff94c35bdeecd93df977882babc7f3a2cf7f5c81d3b09a68db7f0e04f21de5d4230e75e6dbe7ad16eefe0d4325a62067dc6f369446aac",
+				asm: "03f44b1101ebe92c43dfcd28b45c8c937fa8bf6ecbdde90503202e40728f7a1429 OP_CHECKSIG",
+				hex: "2103f44b1101ebe92c43dfcd28b45c8c937fa8bf6ecbdde90503202e40728f7a1429ac",
 				reqSigs: 1,
 				type: "pubkey",
-				addresses: ["1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"]
+				addresses: ["1Es3VwZQzhdhgopeb7tag58K9BrpFYHa6U"]
 			}
 		}],
-		blockhash: "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f",
-		time: 1230988505,
-		blocktime: 1230988505
+		blockhash: "1411465213975a714e3f1016521d9ee1c8b009c88c2389944a835dff4528a9aa",
+		time: 1546510626,
+		blocktime: 1546510626
 	},
 	genesisCoinbaseOutputAddressScripthash: "8b01df4e368ea28f8dc0423bcf7a4923e3a12d307c875e47a0cfbf90b5c39161",
 	historicalData: [{
 		type: "blockheight",
-		date: "2009-01-03",
+		date: "2019-01-03",
 		blockHeight: 0,
-		blockHash: "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f",
-		summary: "The Bitcoin Genesis Block.",
+		blockHash: "1411465213975a714e3f1016521d9ee1c8b009c88c2389944a835dff4528a9aa",
+		summary: "The PkCoin Genesis Block.",
 		alertBodyHtml: "This is the first block in the Bitcoin blockchain, known as the 'Genesis Block'. This block was mined by Bitcoin's creator Satoshi Nakamoto. You can read more about <a href='https://en.bitcoin.it/wiki/Genesis_block'>the genesis block</a>.",
 		referenceUrl: "https://en.bitcoin.it/wiki/Genesis_block"
 	}],
