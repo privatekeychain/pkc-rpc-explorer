@@ -3,7 +3,8 @@ html(lang="en")
 	head
 		meta(charset="utf-8")
 		meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, shrink-to-fit=no")
-		
+		meta(name="keywords",content="私钥链,私钥链区块浏览器,区块浏览器,PKC,pkc,上海零圈,零圈科技")
+		meta(name="description",content="PKC私钥链是全球第一条可以实现针对to B 与 to C 的区块链商业应用,PKC将让普通用户真正认识与使用区块链应用,Welcome to Blockchain.")
 		if (session.uiTheme || session.uiTheme == "dark"||session.uiTheme=="")
 			link(rel="stylesheet", href="/css/bootstrap-dark.css")
 			style.
@@ -117,12 +118,11 @@ html(lang="en")
 							dl
 								dt(i18n-content="Source")
 								dd
-									a(href="http://www.pkc.ink") http://www.pkc.ink
+									a(href="https://www.pkc.ink") http://www.pkc.ink
 
 								dt(i18n-content="Running_Version")
 								dd
 									span 1.0.0
-									span(style="color: #ccc;")  (#{sourcecodeDate})
 
 								if (config.demoSite)
 									dt Public Demos
@@ -155,7 +155,7 @@ html(lang="en")
 													img(src="/img/caijing.jpg",style="border: solid 1px #ccc;" width="148px" height="148px")
 													br
 												if (coinConfig.ticker == coin)
-													a(href="http://www.pkc.ink" i18n-content="pkchomepage")
+													a(href="https://www.pkc.ink" i18n-content="pkchomepage")
 												else
 													span(i18n-content="jkcaijing")
 		

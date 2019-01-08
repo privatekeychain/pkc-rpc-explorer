@@ -13,7 +13,7 @@ const di18n = new DI18n({
             PKcoin_Explorer: 'PKcoin Explorer',
             blockheighthashtxidaddress: 'block height/hash, txid, address',
             Explorer: 'Explorer',
-            Home: 'Home',
+            Home: 'PKcoin Explorer',
             Readmore: 'Read more',
             Summary: 'Summary',
             PreviousBlock: 'Previous Block',

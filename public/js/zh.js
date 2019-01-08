@@ -13,7 +13,7 @@ const di18n = new DI18n({
             PKcoin_Explorer: 'PKC区块浏览器',
             blockheighthashtxidaddress: "区块 高度/哈希, 交易编号, 钱包地址",
             Explorer: '浏览器',
-            Home: '首页',
+            Home: 'PKC区块浏览器',
             Readmore: '查看更多',
             Summary: '概览',
             PreviousBlock: '前一个区块',
