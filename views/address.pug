@@ -90,21 +90,21 @@ block content
 			div(class="tab-content")
 				div(id="tab-details", class="tab-pane active", role="tabpanel")
 
-					if (config.electrumXServers && config.electrumXServers.length > 0)
-						if (session.hideElectrumTrustWarnings != "true")
-							div(class="alert alert-primary alert-dismissible clearfix", role="alert")
-								h4(class="alert-heading h6 font-weight-bold") Note
-								p Since this explorer is database-free, it doesn't natively support address balances and transaction histories. In order to provide this functionality, address balances and transaction history can be requested from a configurable set of ElectrumX servers. If multiple ElectrumX servers are configured, the results are cross-referenced and conflicts noted. For the transaction history displayed below, only the transaction identifiers from ElectrumX are used; the transaction details are requested via RPC from this app's primary node, as usual.
-
-								span(class="font-weight-bold" i18n-content="Configured_ElectrumX_Servers")
-								ul
-									each server in config.electrumXServers
-										li
-											span #{server.host}
-											span  : #{server.port}
-
-								a(href="/changeSetting?name=hideElectrumTrustWarnings&value=true", class="close", aria-label="Close", style="text-decoration: none;")
-									span(aria-hidden="true") &times;
+					//if (config.electrumXServers && config.electrumXServers.length > 0)
+					//	if (session.hideElectrumTrustWarnings != "true")
+					//		div(class="alert alert-primary alert-dismissible clearfix", role="alert")
+					//			h4(class="alert-heading h6 font-weight-bold") Note
+					//			p Since this explorer is database-free, it doesn't natively support address balances and transaction histories. In order to provide this functionality, address balances and transaction history can be requested from a configurable set of ElectrumX servers. If multiple ElectrumX servers are configured, the results are cross-referenced and conflicts noted. For the transaction history displayed below, only the transaction identifiers from ElectrumX are used; the transaction details are requested via RPC from this app's primary node, as usual.
+					//
+					//			span(class="font-weight-bold" i18n-content="Configured_ElectrumX_Servers")
+					//			ul
+					//				each server in config.electrumXServers
+					//					li
+					//						span #{server.host}
+					//						span  : #{server.port}
+					//
+					//			a(href="/changeSetting?name=hideElectrumTrustWarnings&value=true", class="close", aria-label="Close", style="text-decoration: none;")
+					//				span(aria-hidden="true") &times;
 
 					div(class="card mb-3")
 						div(class="card-header")
