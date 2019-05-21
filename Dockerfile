@@ -10,6 +10,7 @@ COPY . /env/pkc-rpc-explorer
 
 RUN set -ex; \
     cd /env/pkc-rpc-explorer; \
+    npm config set color false; \
     npm install;
 
 CMD npm start
