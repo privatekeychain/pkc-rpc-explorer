@@ -24,6 +24,9 @@ var qrcode = require("qrcode");
 var fs = require('fs');
 var electrumApi = require("./app/api/electrumApi.js");
 
+
+var configyaml = require("./app/configyaml.js");
+
 var crawlerBotUserAgentStrings = [ "Googlebot", "Bingbot", "Slurp", "DuckDuckBot", "Baiduspider", "YandexBot", "Sogou", "Exabot", "facebot", "ia_archiver" ];
 
 
@@ -62,27 +65,33 @@ process.on("unhandledRejection", (reason, p) => {
 
 
 app.runOnStartup = function() {
+
+	global.ymlconfig = configyaml.ReadYamlConfig();
+
+
 	global.config = config;
 	global.coinConfig = coins[config.coin];
 	global.coinConfigs = coins;
 
 	console.log("Running RPC Explorer for " + global.coinConfig.name);
 
-	var rpcCredentials = null;
-	if (config.credentials.rpc) {
-		rpcCredentials = config.credentials.rpc;
+	let rpcCredentials = {
+		host: ymlconfig.pkcrpc.host,
+		port: ymlconfig.pkcrpc.port,
+		username: ymlconfig.pkcrpc.username,
+		password: ymlconfig.pkcrpc.password,
+	};
 
-	} else if (process.env.RPC_HOST) {
-		rpcCredentials = {
-			host: process.env.RPC_HOST,
-			port: process.env.RPC_PORT,
-			username: process.env.RPC_USERNAME,
-			password: process.env.RPC_PASSWORD
-		};
-	}
+	let electrumxoneserver = {
+		host: ymlconfig.electrumx.host,
+		port: ymlconfig.electrumx.port,
+		protocol: ymlconfig.electrumx.protocol,
+	};
+
+	config.electrumXServers.push(electrumxoneserver);
 
 	if (rpcCredentials) {
-		console.log("Connecting via RPC to node at " + config.credentials.rpc.host + ":" + config.credentials.rpc.port);
+		console.log("Connecting via RPC to node at " + rpcCredentials.host + ":" + rpcCredentials.port);
 
 		global.client = new bitcoinCore({
 			host: rpcCredentials.host,

@@ -3,6 +3,7 @@ var coins = require("./coins.js");
 
 var currentCoin = "BTC";
 
+
 module.exports = {
   cookiePassword: "0x000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f",
   demoSite: false,
@@ -73,11 +74,13 @@ module.exports = {
   ],
 
   // https://uasf.saltylemon.org/electrum
-  electrumXServers: [{
-      host: "127.0.0.1",
-      port: 50001,
-      protocol: "tcp"
-    }
+  electrumXServers: [
+
+    //   {
+    //   host: "127.0.0.1",
+    //   port: 50001,
+    //   protocol: "tcp"
+    // }
     // set host & port of electrum servers to connect to
     // protocol can be "tls" or "tcp", it defaults to "tcp" if port is 50001 and "tls" otherwise
     // {host: "electrum.example.com", port:50002, protocol: "tls"}, ...
