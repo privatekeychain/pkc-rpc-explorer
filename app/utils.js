@@ -329,7 +329,7 @@ function refreshExchangeRate() {
 		request(coins[config.coin].exchangeRateData.jsonUrl, function (error, response, body) {
 			if (!error && response && response.statusCode && response.statusCode == 200) {
 				var responseBody = JSON.parse(body);
-				console.log(responseBody)
+				console.log(responseBody);
 				var exchangeRate = coins[config.coin].exchangeRateData.responseBodySelectorFunction(responseBody);
 				if (exchangeRate > 0) {
 					global.exchangeRate = exchangeRate;

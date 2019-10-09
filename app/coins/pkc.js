@@ -113,7 +113,7 @@ module.exports = {
 	}],
 
 	exchangeRateData: {
-		jsonUrl: "https://www.bcones.com/api/market/tickers/ticker?symbol=usdt_cbcc",
+		jsonUrl: "https://www.bcone.vip/api/market/tickers/ticker?symbol=usdt_cbcc",
 		exchangedCurrencyName: "usd",
 		responseBodySelectorFunction: function (responseBody) {
 			if (responseBody && responseBody.data.High) {
