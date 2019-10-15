@@ -1,0 +1,10 @@
+electrumx:
+  host: "electrumx"
+  port: 50001
+  protocol: "tcp"
+
+pkcrpc:
+  host: "pkc1"
+  port: 9332
+  username: ""
+  password: ""
