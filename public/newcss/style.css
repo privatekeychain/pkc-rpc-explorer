@@ -51,6 +51,22 @@
 	font-size: 18px;
 }
 
+.tab{
+	display: flex;
+	line-height: 25px;
+	margin:60px 0 30px;
+}
+.tab>div{
+	padding:0 20px;
+	box-shadow: 1px 1px 1px #666;
+	cursor: pointer;
+	border-radius: 2px;
+	margin-right:10px;
+}
+.tab>div.active{
+	background: #2A9FD6;
+	color:white;
+}
 /* Social and CountDown */
 
 .countdown-wrapper {

@@ -8,6 +8,7 @@ var bitcoinjs = require('bitcoinjs-lib');
 var sha256 = require("crypto-js/sha256");
 var hexEnc = require("crypto-js/enc-hex");
 var Decimal = require("decimal.js");
+var request = require("request");
 
 var utils = require('./../app/utils.js');
 var coins = require("./../app/coins.js");
@@ -1074,7 +1075,30 @@ router.get("/about", function (req, res) {
 	res.render("about");
 });
 router.get("/tokens", function (req, res) {
-	res.render("tokens");
+	request('http://192.168.0.213:3003/api?module=addresses&action=getTokens', function(err, resp, body) {
+		if (err) return console.log(err)
+		body = JSON.parse(body)
+		res.render("tokens", {tokens: body.result.data});
+	})
+});
+function fetch(url) {
+	return new Promise(resolve => {
+		request(url, (err, res, body) => {
+			resolve(JSON.parse(body).result.data)
+		})
+	})
+}
+router.get("/token/:name", function (req, res) {
+	fetch('http://192.168.0.213:3003/api?module=addresses&action=getTokens')
+		.then(tokens => {
+			const token = tokens.find(t => t.name === req.params.name)
+			Promise.all([fetch(`http://192.168.0.213:3003/api?module=events&action=getAllEventsByAddress&address=${token.address}`),
+				fetch(`http://192.168.0.213:3003/api?module=tokens&action=getTokenAccounts&address=${token.address}`)])
+				.then(([events, accounts]) => {
+					res.render("token", {token, accounts,
+						events: events.map(e => ({...e, createdTime: moment(e.timestamp*1000).format('YYYY-MM-DD HH:mm:ss')}))})
+				})
+		})
 });
 router.get("/fun", function (req, res) {
 	var sortedList = coins[config.coin].historicalData;

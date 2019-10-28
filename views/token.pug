@@ -1,0 +1,84 @@
+extends layout
+
+block headContent
+	title(i18n-content="TOKENS")
+
+block content
+	script(src="/js/countdown.js")
+	script(src="/js/jquery.flexslider.js")
+	h1(class="h3") #{token.name}
+	hr
+	//link(rel="stylesheet", href="/newcss/font-awesome.min.css")
+	link(rel="stylesheet", href="/newcss/style.css")
+	div(class="main-container")
+		div(class="container" style="max-width:1140px;")
+			div(class="flexslider")
+				table(class="table table-striped table-responsive-sm mb-0" style="text-align:left")
+					tr
+						td Name
+						td #{token.name}
+					tr
+						td Symbol
+						td #{token.symbol}
+					tr
+						td Address
+						td #{token.address.replace(/^0x/, '')}
+					tr
+						td Balance
+						td #{parseInt(token.balance, 16)}
+					tr
+						td Type
+						td #{token.type}
+					tr
+						td Contract Interfaces
+						td #{token.contractInterfaces[0]}
+					tr
+						td Created Time
+						td #{token.createdByTx.timestamp}
+					tr
+						td Tx
+						td #{token.createdByTx.hash.replace(/^0x/, '')}
+					tr
+						td Decimals
+						td #{parseInt(token.decimals, 16)}
+					tr
+						td Total Supply
+						td #{parseInt(token.totalSupply, 16)}
+				div(class="tab")
+					div(class="t active") Events (#{events.length})
+					div(class="t") Accounts (#{accounts.length})
+				table(class="table table-striped table-responsive-sm")
+					tr
+						th Event
+						th Address
+						th Arguments
+						th Created Time
+						th Block Number
+					each ev in events
+						tr
+							td #{ev.event}
+							td #{ev.address.replace(/^0x/, '').replace(/^(\w{5})\w+(\w{5})$/, '$1 ... $2')}
+							td
+								div from: #{ev.args[0].replace(/^0x/, '')}
+								div to: #{ev.args[1].replace(/^0x/, '')}
+								div value: #{parseInt(ev.args[2], 16)}
+							td #{ev.createdTime}
+							td #{ev.blockNumber}
+				table(class="table table-striped table-responsive-sm" style="display:none")
+					tr
+						th Address
+						th Balance
+					each ac in accounts
+						tr
+							td #{ac.address.replace(/^0x/, '')}
+							td #{parseInt(ac.balance, 16)}
+	script.
+		document.querySelector('.tab').addEventListener('click', function(ev) {
+			var target = ev.target
+			if (!target.classList.contains('t')) return
+			this.querySelector('.active').classList.remove('active')
+			target.classList.add('active')
+			var tables = document.querySelectorAll('.tab~table')
+			;[].forEach.call(tables, function(t) {t.style.display = 'none'})
+			tables[[].indexOf.call(this.querySelectorAll('div'), target)].style.display = 'table'
+		})

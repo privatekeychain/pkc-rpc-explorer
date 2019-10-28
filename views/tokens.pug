@@ -4,6 +4,7 @@ block headContent
 	title(i18n-content="TOKENS")
 
 block content
+	script(src="/js/moment.js")
 	script(src="/js/countdown.js")
 	script(src="/js/jquery.flexslider.js")
 	h1(class="h3" i18n-content="TOKENS") 
@@ -13,19 +14,33 @@ block content
 	div(class="main-container")
 			div(class="container" style="max-width:1140px;")
 				div(class="flexslider")
-					h1(i18n-content="Coming_Soon")
-					div(class="countdown-wrapper")
-						div(class="countdown-showcase")
-							ul(class="countdown")
-								li 
-									span(id="days") 000 
-									p(style="font-size:14px;text-align:center" i18n-content="Days") 
-								li
-									span(id="hours") 00 
-									p(style="font-size:14px;text-align:center" i18n-content="Hours") 
-								li
-									span(id="minutes") 00
-									p(style="font-size:14px;text-align:center" i18n-content="Minutes") 
-								li
-									span(id="seconds") 00 
-									p(style="font-size:14px;text-align:center" i18n-content="Seconds") 
+					//- h1(i18n-content="Coming_Soon")
+					//- div(class="countdown-wrapper")
+					//- 	div(class="countdown-showcase")
+					//- 		ul(class="countdown")
+					//- 			li 
+					//- 				span(id="days") 000 
+					//- 				p(style="font-size:14px;text-align:center" i18n-content="Days") 
+					//- 			li
+					//- 				span(id="hours") 00 
+					//- 				p(style="font-size:14px;text-align:center" i18n-content="Hours") 
+					//- 			li
+					//- 				span(id="minutes") 00
+					//- 				p(style="font-size:14px;text-align:center" i18n-content="Minutes") 
+					//- 			li
+					//- 				span(id="seconds") 00 
+					//- 				p(style="font-size:14px;text-align:center" i18n-content="Seconds") 
+					table(class="table table-striped table-responsive-sm mb-0")
+						thead
+							tr
+								th Name
+								th Address
+								th Balance
+								th Created Time
+						each t in tokens
+							tr
+								td
+									a(href="/token/" + t.name) #{t.name}
+								td #{t.address.replace(/^0x/, '')}
+								td #{parseInt(t.balance, 16)} RBTC
+								td #{moment(t.createdByTx.timestamp * 1000).format('YYYY-MM-DD HH:mm:ss')}
